@@ -1,0 +1,177 @@
+.category-left{
+    margin-left: 18px;
+}
+.clubs-single {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.single-main {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Image container styling */
+.clubs-head {
+    position: relative;
+    margin: -30px -30px 30px -30px;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    height: 450px;
+}
+
+.clubs-head img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.clubs-head:hover img {
+    transform: scale(1.03);
+}
+
+/* Title styling */
+.clubs-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 25px 0 20px;
+    color: #2d3436;
+    line-height: 1.4;
+}
+
+.clubs-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.clubs-title a:hover {
+    color: #0056b3;
+}
+
+/* Meta information styling */
+.meta {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eef0f2;
+}
+
+.meta-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.meta .date {
+    color: #636e72;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.meta .date i {
+    color: #0056b3;
+    font-size: 1.1rem;
+}
+
+/* Content styling */
+.clubs-text {
+    color: #2d3436;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.clubs-text p {
+    margin-bottom: 20px;
+}
+
+.clubs-text img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 25px 0;
+}
+
+.clubs-text h2,
+.clubs-text h3 {
+    margin: 30px 0 15px;
+    color: #2d3436;
+    font-weight: 600;
+}
+
+.clubs-text h2 {
+    font-size: 1.8rem;
+}
+
+.clubs-text h3 {
+    font-size: 1.5rem;
+}
+
+.clubs-text ul,
+.clubs-text ol {
+    margin: 20px 0;
+    padding-left: 25px;
+}
+
+.clubs-text li {
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+/* Animation for content loading */
+.wow.fadeIn {
+    animation-duration: 1s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .clubs-head {
+        height: 400px;
+    }
+}
+
+@media (max-width: 992px) {
+    .clubs-single {
+        padding: 40px 0;
+    }
+
+    .clubs-head {
+        height: 350px;
+    }
+
+    .clubs-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-main {
+        padding: 20px;
+    }
+
+    .clubs-head {
+        margin: -20px -20px 20px -20px;
+        height: 250px;
+    }
+
+    .clubs-title {
+        font-size: 1.6rem;
+        margin: 20px 0 15px;
+    }
+
+    .clubs-text {
+        font-size: 1rem;
+    }
+
+    .clubs-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .clubs-text h3 {
+        font-size: 1.3rem;
+    }
+}
