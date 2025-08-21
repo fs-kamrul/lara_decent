@@ -60,23 +60,16 @@ return [
 //            $version = '1.0.1';
 
             // You may use this event to set up your assets.
-            $theme->asset()->usePath()->add('bootstrap', 'css/bootstrap.min.css', [], [], $version);
+            $theme->asset()->usePath()->add('bootstrap', 'css/bootstrap.css', [], [], $version);
 //            $theme->asset()->add('bootstrap', 'vendor/Modules/KamrulDashboard/vendor/bootstrap/dist/css/bootstrap.min.css', [], [], $version);
-            $theme->asset()->usePath()->add('nice', 'css/nice-select.css', [], [], $version);
-            $theme->asset()->usePath()->add('sweetalert2', 'css/sweetalert2.min.css', [], [], $version);
-            $theme->asset()->usePath()->add('font-awesome', 'css/font-awesome.min.css', [], [], $version);
-            $theme->asset()->usePath()->add('remixicon', 'css/remixicon/remixicon.min.css', [], [], $version);
-            $theme->asset()->usePath()->add('icofont', 'css/icofont.css', [], [], $version);
-            $theme->asset()->usePath()->add('slicknav', 'css/slicknav.min.css', [], [], $version);
-            $theme->asset()->usePath()->add('owl-carousel', 'css/owl-carousel.css', [], [], $version);
-            $theme->asset()->usePath()->add('datepicker', 'css/datepicker.css', [], [], $version);
-            $theme->asset()->usePath()->add('animate', 'css/animate.min.css', [], [], $version);
+            $theme->asset()->usePath()->add('animate', 'css/animate.css', [], [], $version);
+            $theme->asset()->usePath()->add('swiper-bundle', 'css/swiper-bundle.css', [], [], $version);
+            $theme->asset()->usePath()->add('slick', 'css/slick.css', [], [], $version);
             $theme->asset()->usePath()->add('magnific-popup', 'css/magnific-popup.css', [], [], $version);
-            $theme->asset()->usePath()->add('normalize', 'css/normalize.css', [], [], $version);
-            $theme->asset()->usePath()->add('style', 'style.css', [], [], $version);
-            $theme->asset()->usePath()->add('responsive', 'css/responsive.css', [], [], $version);
-
-
+            $theme->asset()->usePath()->add('font-awesome', 'css/font-awesome-pro.css', [], [], $version);
+            $theme->asset()->usePath()->add('spacing', 'css/spacing.css', [], [], $version);
+            $theme->asset()->usePath()->add('custom-animation', 'css/custom-animation.css', [], [], $version);
+            $theme->asset()->usePath()->add('main', 'css/main.css', [], [], $version);
 //
             $theme->asset()->usePath()->add('toastr_css', 'toastr/css/toastr.min.css', [], [], $version);
 //            $theme->asset()->usePath()->add('output', 'css/output.css', [], [], $version);
@@ -86,31 +79,29 @@ return [
             ////////*************************                      JS                      *************************////////
 
 
-            $theme->asset()->container('footer')->usePath()->add('jquery_js', 'js/jquery.min.js');
-//            $theme->asset()->container('footer')->usePath()->add('jquery_js_1', 'js/jquery-1.12.4.min.js');
-//            $theme->asset()->container('footer')->add('bootstrap-js', 'vendor/Modules/KamrulDashboard/vendor/bootstrap/dist/js/bootstrap.bundle.min.js');
-            $theme->asset()->container('footer')->usePath()->add('jquery-migrate', 'js/jquery-migrate-3.0.0.js');
-            $theme->asset()->container('footer')->usePath()->add('jquery-ui', 'js/jquery-ui.min.js');
-            $theme->asset()->container('footer')->usePath()->add('easing', 'js/easing.js');
-            $theme->asset()->container('footer')->usePath()->add('colors', 'js/colors.js');
-            $theme->asset()->container('footer')->usePath()->add('sweetalert2', 'js/sweetalert2.min.js');
-            $theme->asset()->container('footer')->usePath()->add('popper', 'js/popper.min.js');
-            $theme->asset()->container('footer')->usePath()->add('bootstrap-datepicker', 'js/bootstrap-datepicker.js');
-            $theme->asset()->container('footer')->usePath()->add('jquery', 'js/jquery.nav.js');
-            $theme->asset()->container('footer')->usePath()->add('slicknav', 'js/slicknav.min.js');
-            $theme->asset()->container('footer')->usePath()->add('scrollUp', 'js/jquery.scrollUp.min.js');
-            $theme->asset()->container('footer')->usePath()->add('niceselect', 'js/niceselect.js');
-            $theme->asset()->container('footer')->usePath()->add('tilt-jquery', 'js/tilt.jquery.min.js');
-            $theme->asset()->container('footer')->usePath()->add('owl-carousel', 'js/owl-carousel.js');
-            $theme->asset()->container('footer')->usePath()->add('jquery-counterup', 'js/jquery.counterup.min.js');
-            $theme->asset()->container('footer')->usePath()->add('steller', 'js/steller.js');
-            $theme->asset()->container('footer')->usePath()->add('wow', 'js/wow.min.js');
-            $theme->asset()->container('footer')->usePath()->add('magnific-popup', 'js/jquery.magnific-popup.min.js');
-            $theme->asset()->container('footer')->usePath()->add('waypoints', 'js/waypoints.min.js');
-
-            $theme->asset()->container('footer')->usePath()->add('bootstrap-js', 'js/bootstrap.min.js');
-            $theme->asset()->container('footer')->usePath()->add('main-js', 'js/main.js');
+            $theme->asset()->container('footer')->usePath()->add('jquery_js', 'js/vendor/jquery.js');
+            $theme->asset()->container('footer')->usePath()->add('waypoints', 'js/vendor/waypoints.js');
+            $theme->asset()->container('footer')->usePath()->add('bootstrap-bundle', 'js/bootstrap-bundle.js');
+            $theme->asset()->container('footer')->usePath()->add('meanmenu', 'js/meanmenu.js');
+            $theme->asset()->container('footer')->usePath()->add('gsap-min', 'js/gsap.min.js');
+            $theme->asset()->container('footer')->usePath()->add('ScrollTrigger-min', 'js/ScrollTrigger.min.js');
+            $theme->asset()->container('footer')->usePath()->add('split-text-min', 'js/split-text.min.js');
+            $theme->asset()->container('footer')->usePath()->add('swiper-bundle', 'js/swiper-bundle.js');
             $theme->asset()->container('footer')->usePath()->add('slick', 'js/slick.js');
+            $theme->asset()->container('footer')->usePath()->add('range-slider', 'js/range-slider.js');
+            $theme->asset()->container('footer')->usePath()->add('magnific-popup', 'js/magnific-popup.js');
+            $theme->asset()->container('footer')->usePath()->add('nice-select', 'js/nice-select.js');
+            $theme->asset()->container('footer')->usePath()->add('purecounter', 'js/purecounter.js');
+            $theme->asset()->container('footer')->usePath()->add('countdown', 'js/countdown.js');
+            $theme->asset()->container('footer')->usePath()->add('jequery-knob', 'js/jequery-knob.js');
+            $theme->asset()->container('footer')->usePath()->add('jequery-appear', 'js/jequery-appear.js');
+            $theme->asset()->container('footer')->usePath()->add('wow', 'js/wow.js');
+            $theme->asset()->container('footer')->usePath()->add('isotope-pkgd', 'js/isotope-pkgd.js');
+            $theme->asset()->container('footer')->usePath()->add('imagesloaded-pkgd', 'js/imagesloaded-pkgd.js');
+            $theme->asset()->container('footer')->usePath()->add('imagesloaded-pkgd', 'js/imagesloaded-pkgd.js');
+            $theme->asset()->container('footer')->usePath()->add('ajax-form', 'js/ajax-form.js');
+            $theme->asset()->container('footer')->usePath()->add('main-js', 'js/main.js');
+
 //            $theme->asset()->container('footer')->usePath()->add('script', 'js/script.js');
 //
             $theme->asset()->container('footer')->usePath()->add('toastr_js', 'toastr/js/toastr.min.js');
