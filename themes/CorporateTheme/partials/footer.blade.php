@@ -10,12 +10,14 @@
     </div>
     <!--/ End Footer Top -->
     <!-- Copyright -->
-    <div class="copyright">
+    <div class="tp-copyright__area black-bg-3">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-12">
-                    <div class="copyright-content">
-                        <p>{!! theme_option('copyright') !!}</p>
+            <div class="tp-copyright__bdr-top pt-25 pb-25">
+                <div class="row">
+                    <div class="col-md-12 col-lg-6">
+                        <div class="tp-copyright__inner text-center text-lg-start">
+                            <p>{!! theme_option('copyright') !!}</p>
+                        </div>
                     </div>
                 </div>
             </div>

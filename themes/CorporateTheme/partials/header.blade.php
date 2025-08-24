@@ -265,13 +265,13 @@
                                     <img src="{{ getImageUrlById($logo_image, 'shortcodes') }}" height="70px" alt="{{ theme_option('site_phone') }}">
                                 </div>
                                 <span>
-                              <svg width="156" height="133" viewBox="0 0 156 133" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                 <path
-                                     d="M0 0H156V124.793C156 129.655 151.698 133.393 146.883 132.714L6.88286 112.971C2.93527 112.414 0 109.036 0 105.049V0Z"
-                                     fill="#336EF9" />
-                              </svg>
-                           </span>
+                                  <svg width="156" height="133" viewBox="0 0 156 133" fill="none"
+                                       xmlns="http://www.w3.org/2000/svg">
+                                     <path
+                                         d="M0 0H156V124.793C156 129.655 151.698 133.393 146.883 132.714L6.88286 112.971C2.93527 112.414 0 109.036 0 105.049V0Z"
+                                         fill="#f0f8ff" />
+                                  </svg>
+                               </span>
                             </a>
                         </div>
                     </div>
