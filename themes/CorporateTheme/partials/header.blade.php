@@ -143,10 +143,17 @@
 {{--        </div>--}}
         <div class="tpoffcanvas__social">
             <div class="social-icon">
-                <a href="#fac"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                @for ($i = 1; $i <= 6; $i++)
+                    @if (theme_option('social_' . $i . '_url') && theme_option('social_' . $i . '_name'))
+                            <a
+                                href="{{ theme_option('social_' . $i . '_url') }}"
+                                {{--                            class="text-2xl text-white transition duration-150 hover:text-text-highlight"--}}
+                                target="_blank"
+                                title="{{ theme_option('social_' . $i . '_name') }}">
+                                <i class="{{ theme_option('social_' . $i . '_icon') }}"></i>
+                            </a>
+                    @endif
+                @endfor
             </div>
         </div>
     </div>
@@ -162,7 +169,7 @@
                 <div class="col-xxl-8 col-xl-6 col-lg-6 col-md-6">
                     <div class="tp-header-top__left-info">
                         <ul>
-                            <li><span>Call</span>Consult With It Advisor? <a href="#">Click Now</a></li>
+                            <li><span>Call</span>Consult With It Service? <a href="{{ url('contact-us') }}">Click Now</a></li>
                             <li>
                                 <svg width="14" height="18" viewBox="0 0 14 18" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -191,10 +198,19 @@
                     <div class="tp-header-top__right-wrap d-flex align-items-center justify-content-end">
                         <div class="tp-header-top__social">
                             <ul>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                                @for ($i = 1; $i <= 6; $i++)
+                                    @if (theme_option('social_' . $i . '_url') && theme_option('social_' . $i . '_name'))
+                                        <li>
+                                        <a
+                                            href="{{ theme_option('social_' . $i . '_url') }}"
+                                            {{--                            class="text-2xl text-white transition duration-150 hover:text-text-highlight"--}}
+                                            target="_blank"
+                                            title="{{ theme_option('social_' . $i . '_name') }}">
+                                            <i class="{{ theme_option('social_' . $i . '_icon') }}"></i>
+                                        </a>
+                                        </li>
+                                    @endif
+                                @endfor
                             </ul>
                         </div>
 {{--                        <div class="tp-header-top__lang d-none d-lg-block ml-25">--}}

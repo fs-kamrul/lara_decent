@@ -81,59 +81,59 @@ app()->booted(function () {
     shortcode()->setAdminConfig('mission-vision', function ($attributes) {
         return Theme::partial('short-codes.mission-vision-admin-config', compact('attributes'));
     });
-    add_shortcode('choose-us', __('Our Choose Us'), __('Add Choose Us'),
-        function ($shortcode) {
-            Theme::asset()->container('footer')->usePath()->add('video-js', 'js/video.js');
-//            Assets::addScripts(['raphael', 'morris']);
-//            Assets::addScriptsDirectly([
-//                'vendor/Modules/ContactForm/js/contfgfact.js',
-//            ]);
-            $attributes = $shortcode->toArray();
-
-            $url = Youtube::getYoutubeVideoEmbedURL($shortcode->content);
-//            $url = $shortcode->content;
-            $faqs = app(FaqCategoryInterface::class)->advancedGet([
-                'condition' => ['id' => Arr::get($attributes, 'category_id')],
-                    'take'      => 1,
-                    'with'      => [
-                        'faqs' => function ($query) use ($attributes) {
-                            return $query
-//                                ->latest()
-                                ->where('status', DboardStatus::PUBLISHED)
-                                ->limit(Arr::get($attributes, 'number_of_slide'));
-                        },
-                    ],
-            ]);
-            return Theme::partial('short-codes.choose-us', ['shortcode' => $shortcode,'faqs' => $faqs->faqs, 'url' => $url]);
-        });
-
-    shortcode()->setAdminConfig('choose-us', function ($attributes, $content) {
-        $categories = app(FaqCategoryInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
-        return Theme::partial('short-codes.choose-us-admin-config', compact('attributes','categories', 'content'));
-    });
-    add_shortcode('choose-us-page', __('Our Choose Us Page'), __('Add Choose Us Page'),
-        function ($shortcode) {
-            $attributes = $shortcode->toArray();
-            $url = Youtube::getYoutubeVideoEmbedURL($shortcode->content);
-            $faqs = app(FaqCategoryInterface::class)->advancedGet([
-                'condition' => ['id' => Arr::get($attributes, 'category_id')],
-                    'take'      => 1,
-                    'with'      => [
-                        'faqs' => function ($query) use ($attributes) {
-                            return $query
-//                                ->latest()
-                                ->where('status', DboardStatus::PUBLISHED);
+//    add_shortcode('choose-us', __('Our Choose Us'), __('Add Choose Us'),
+//        function ($shortcode) {
+//            Theme::asset()->container('footer')->usePath()->add('video-js', 'js/video.js');
+////            Assets::addScripts(['raphael', 'morris']);
+////            Assets::addScriptsDirectly([
+////                'vendor/Modules/ContactForm/js/contfgfact.js',
+////            ]);
+//            $attributes = $shortcode->toArray();
+//
+//            $url = Youtube::getYoutubeVideoEmbedURL($shortcode->content);
+////            $url = $shortcode->content;
+//            $faqs = app(FaqCategoryInterface::class)->advancedGet([
+//                'condition' => ['id' => Arr::get($attributes, 'category_id')],
+//                    'take'      => 1,
+//                    'with'      => [
+//                        'faqs' => function ($query) use ($attributes) {
+//                            return $query
+////                                ->latest()
+//                                ->where('status', DboardStatus::PUBLISHED)
 //                                ->limit(Arr::get($attributes, 'number_of_slide'));
-                        },
-                    ],
-            ]);
-            return Theme::partial('short-codes.choose-us-page', ['shortcode' => $shortcode,'faqs' => $faqs->faqs, 'url' => $url]);
-        });
-
-    shortcode()->setAdminConfig('choose-us-page', function ($attributes, $content) {
-        $categories = app(FaqCategoryInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
-        return Theme::partial('short-codes.choose-us-page-admin-config', compact('attributes','categories', 'content'));
-    });
+//                        },
+//                    ],
+//            ]);
+//            return Theme::partial('short-codes.choose-us', ['shortcode' => $shortcode,'faqs' => $faqs->faqs, 'url' => $url]);
+//        });
+//
+//    shortcode()->setAdminConfig('choose-us', function ($attributes, $content) {
+//        $categories = app(FaqCategoryInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
+//        return Theme::partial('short-codes.choose-us-admin-config', compact('attributes','categories', 'content'));
+//    });
+//    add_shortcode('choose-us-page', __('Our Choose Us Page'), __('Add Choose Us Page'),
+//        function ($shortcode) {
+//            $attributes = $shortcode->toArray();
+//            $url = Youtube::getYoutubeVideoEmbedURL($shortcode->content);
+//            $faqs = app(FaqCategoryInterface::class)->advancedGet([
+//                'condition' => ['id' => Arr::get($attributes, 'category_id')],
+//                    'take'      => 1,
+//                    'with'      => [
+//                        'faqs' => function ($query) use ($attributes) {
+//                            return $query
+////                                ->latest()
+//                                ->where('status', DboardStatus::PUBLISHED);
+////                                ->limit(Arr::get($attributes, 'number_of_slide'));
+//                        },
+//                    ],
+//            ]);
+//            return Theme::partial('short-codes.choose-us-page', ['shortcode' => $shortcode,'faqs' => $faqs->faqs, 'url' => $url]);
+//        });
+//
+//    shortcode()->setAdminConfig('choose-us-page', function ($attributes, $content) {
+//        $categories = app(FaqCategoryInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
+//        return Theme::partial('short-codes.choose-us-page-admin-config', compact('attributes','categories', 'content'));
+//    });
     if (is_module_active('ContactForm')) {
         add_filter(CONTACT_FORM_TEMPLATE_VIEW, function () {
             return Theme::getThemeNamespace() . '::partials.short-codes.contact-form';
@@ -146,22 +146,39 @@ app()->booted(function () {
     }
     if (is_module_active('AdminBoard')) {
 
-        add_shortcode('our-facility', __('Our Facilities'), __('Add Our Facilities'),
+        add_shortcode('our-services', __('Our Services'), __('Add Our Services'),
             function ($shortcode) {
                 $attributes = $shortcode->toArray();
-                $adminBoardRepository = app(\Modules\AdminBoard\Repositories\Interfaces\AdminFacilityInterface::class);
-                $facilities = $adminBoardRepository->advancedGet(array_merge([
+                $adminBoardRepository = app(\Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface::class);
+                $services = $adminBoardRepository->advancedGet(array_merge([
                     'take' => Arr::get($attributes, 'number_of_slide'),
                     'order_by' => ['created_at' => 'desc'],
                 ]));
 //                dd($facilities);
 //                $facilities = AdminBoardHelper::getFacilityFilter((int) Arr::get($attributes, 'number_of_slide'), []);
-                return Theme::partial('short-codes.our-facility', ['shortcode' => $shortcode,'facilities' => $facilities]);
+                return Theme::partial('short-codes.our-services', ['shortcode' => $shortcode,'services' => $services]);
             });
-        shortcode()->setAdminConfig('our-facility', function ($attributes) {
+        shortcode()->setAdminConfig('our-services', function ($attributes) {
             $post_types = app(PosttypeInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
-            return Theme::partial('short-codes.our-facility-admin-config', compact('attributes','post_types'));
+            return Theme::partial('short-codes.our-services-admin-config', compact('attributes','post_types'));
         });
+
+//        add_shortcode('our-facility', __('Our Facilities'), __('Add Our Facilities'),
+//            function ($shortcode) {
+//                $attributes = $shortcode->toArray();
+//                $adminBoardRepository = app(\Modules\AdminBoard\Repositories\Interfaces\AdminFacilityInterface::class);
+//                $facilities = $adminBoardRepository->advancedGet(array_merge([
+//                    'take' => Arr::get($attributes, 'number_of_slide'),
+//                    'order_by' => ['created_at' => 'desc'],
+//                ]));
+////                dd($facilities);
+////                $facilities = AdminBoardHelper::getFacilityFilter((int) Arr::get($attributes, 'number_of_slide'), []);
+//                return Theme::partial('short-codes.our-facility', ['shortcode' => $shortcode,'facilities' => $facilities]);
+//            });
+//        shortcode()->setAdminConfig('our-facility', function ($attributes) {
+//            $post_types = app(PosttypeInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
+//            return Theme::partial('short-codes.our-facility-admin-config', compact('attributes','post_types'));
+//        });
         add_shortcode('academic-group', __('Academic Group'), __('Academic Group'),
             function ($shortcode) {
                 $attributes = $shortcode->toArray();
