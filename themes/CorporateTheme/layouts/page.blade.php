@@ -8,15 +8,15 @@
 {{--    @endif--}}
 {{--    {!! Theme::breadcrumb()->render() !!}--}}
 <!-- Breadcrumbs -->
-<div class="breadcrumbs overlay">
-    <div class="container">
-        <div class="bread-inner">
-            <div class="row">
+{{--<div class="breadcrumbs overlay">--}}
+{{--    <div class="container">--}}
+{{--        <div class="bread-inner">--}}
+{{--            <div class="row">--}}
                 {!! Theme::partial('breadcrumbs') !!}
-            </div>
-        </div>
-    </div>
-</div>
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 {{--<!-- End Breadcrumbs -->--}}
 {{--<section class="mb-130 mt-20 bg-white px-4 lg:mt-32 lg:px-0">--}}
 {{--    <div class="mx-auto xl:max-w-container lg:max-w-lg-container xs:max-w-xs-container sm:max-w-sm-container px-4 lg:px-0">--}}

@@ -1,6 +1,7 @@
-<footer id="footer" class="footer">
+
+<footer>
     <!-- Footer Top -->
-    <div class="footer-top">
+    <div class="tp-footer__area black-bg-3 pt-150 pb-30">
         <div class="container">
             <div class="row">
                 {!! dynamic_sidebar('footer_sidebar') !!}

@@ -78,13 +78,13 @@ class HookServiceProvider extends ServiceProvider
             $version = '1.0.1';
             $dist = asset('vendor/Modules/SimpleSlider');
 
-            Theme::asset()
-                ->container('footer')
-                ->usePath(false)
-                ->add('simple-slider-owl-carousel-css', $dist . '/lib/owl-carousel/owl.carousel.css', [], [], $version)
-                ->add('simple-slider-css', $dist . '/css/simple-slider.css', [], [], $version)
-                ->add('simple-slider-owl-carousel-js', $dist . '/lib/owl-carousel/owl.carousel.js', ['jquery'], [], $version)
-                ->add('simple-slider-js', $dist . '/js/simple-slider.js', ['jquery'], [], $version);
+//            Theme::asset()
+//                ->container('footer')
+//                ->usePath(false)
+//                ->add('simple-slider-owl-carousel-css', $dist . '/lib/owl-carousel/owl.carousel.css', [], [], $version)
+//                ->add('simple-slider-css', $dist . '/css/simple-slider.css', [], [], $version)
+//                ->add('simple-slider-owl-carousel-js', $dist . '/lib/owl-carousel/owl.carousel.js', ['jquery'], [], $version)
+//                ->add('simple-slider-js', $dist . '/js/simple-slider.js', ['jquery'], [], $version);
         }
 
         return view(apply_filters(SIMPLE_SLIDER_VIEW_TEMPLATE, 'simpleslider::sliders'), [

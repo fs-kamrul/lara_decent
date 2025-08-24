@@ -100,16 +100,16 @@
         </div>
         <div class="tpoffcanvas__logo">
             <a href="{{ url('/') }}">
-                <img src="{{ getImageUrlById($logo_image, 'shortcodes') }}" alt="{{ theme_option('site_title') }}">
+                <img src="{{ getImageUrlById($logo_image, 'shortcodes') }}" width="100px" alt="{{ theme_option('site_title') }}">
             </a>
         </div>
         <div class="tpoffcanvas__title">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima incidunt eaque ab cumque, porro maxime autem sed.</p>
+            <p>{{ theme_option('site_description') }}</p>
         </div>
         <div class="tp-main-menu-mobile d-xl-none"></div>
         <div class="tpoffcanvas__contact-info">
             <div class="tpoffcanvas__contact-title">
-                <h5>Contact us</h5>
+                <h5>@lang('Contact us')</h5>
             </div>
             <ul>
                 <li>
@@ -154,6 +154,7 @@
 <div class="body-overlay"></div>
 
 <header>
+    <div class="@if (Request::is('/')) @else tp-header-3__transparent @endif">
     <!-- header top area start -->
     <div class="tp-header-top__area grey-bg tp-header-top__height tp-header-top__plr d-none d-md-block">
         <div class="container-fluid">
@@ -210,6 +211,10 @@
 {{--                                    </svg>--}}
 {{--                                 </span>--}}
 {{--                                    </a>--}}
+
+                        @if (is_module_active('Language'))
+                            {!! Theme::partial('language-switcher') !!}
+                        @endif
 {{--                                    <ul class="tp-header-top__lang-submenu">--}}
 {{--                                        <li>--}}
 {{--                                            <a href="#">Arabic</a>--}}
@@ -263,119 +268,37 @@
                         <div class="tp-header-main__menu-bg" data-background="assets/img/header-icon/header-bg-shape-1.png">
                             <div class="tp-header-main__menu-box d-none d-xl-block">
                                 <div class="tp-header-main__menu menu-icon p-relative">
-                                    {!! Menus::renderMenuLocation('main-menu', [
-                                        'view'    => 'menu',
-                                        'status'    => 'nav-item nav-link',
-                                        'options' => ['class' => 'nav menu'],
-                                    ]) !!}
                                     <nav class="tp-main-menu-content">
-                                        <ul>
-                                            <li class="has-dropdown has-dropdown-2 menu-icon-2">
-                                                <a href="index.html">Home</a>
-                                                <div class="tp-submenu submenu has-homemenu">
-                                                    <div class="row gx-6 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb mb-15">
-                                                                <img src="assets/img/menu/home-1.jpg" alt="">
-                                                                <div class="homemenu-btn">
-                                                                    <a class="tp-menu-btn" href="index.html">View Demo</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                <h4 class="homemenu-title">
-                                                                    <a href="index.html">Home 01</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb mb-15">
-                                                                <img src="assets/img/menu/home-2.jpg" alt="">
-                                                                <div class="homemenu-btn">
-                                                                    <a class="tp-menu-btn" href="index-2.html">View Demo</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                <h4 class="homemenu-title">
-                                                                    <a href="index-2.html">Home 02</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col homemenu">
-                                                            <div class="homemenu-thumb mb-15">
-                                                                <img src="assets/img/menu/home-3.jpg" alt="">
-                                                                <div class="homemenu-btn">
-                                                                    <a class="tp-menu-btn" href="index-3.html">View Demo</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="homemenu-content text-center">
-                                                                <h4 class="homemenu-title">
-                                                                    <a href="index-3.html">Home 03</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a href="about.html">About</a>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="service.html">Services</a>
-                                                <ul class="tp-submenu submenu">
-                                                    <li><a href="service.html">Service</a></li>
-                                                    <li><a href="service-details.html">Service Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="#">Pages</a>
-                                                <ul class="tp-submenu submenu">
-                                                    <li><a href="blog.html">Blog Sidebar</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                    <li><a href="project.html">Project</a></li>
-                                                    <li><a href="project-details.html">Project Details</a></li>
-                                                    <li><a href="team.html">Team</a></li>
-                                                    <li><a href="team-details.html">Team Details</a></li>
-                                                    <li><a href="price.html">Price</a></li>
-                                                    <li><a href="faq.html">Faq</a></li>
-                                                    <li><a href="cart.html">Cart</a></li>
-                                                    <li><a href="checkout.html">Checkout</a></li>
-                                                    <li><a href="404.html">404</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="shop.html">Shop</a>
-                                                <ul class="tp-submenu submenu">
-                                                    <li><a href="shop.html">Shop</a></li>
-                                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
+                                        {!! Menus::renderMenuLocation('main-menu', [
+                                            'view'    => 'menu',
+                                            'status'    => 'nav-item nav-link',
+                                            'options' => ['class' => ''],
+                                        ]) !!}
                                     </nav>
                                 </div>
                             </div>
                             <div class="tp-header-main__right-wrapper">
                                 <div class="tp-header-main__right-info d-flex justify-content-end align-items-center">
                                     <ul class="d-flex align-items-center">
+{{--                                        <li>--}}
+{{--                                            <div class="tp-header-main__search d-none d-md-block">--}}
+{{--                                                <button class="search-open-btn">--}}
+{{--                                          <span>--}}
+{{--                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"--}}
+{{--                                                  xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                                <path--}}
+{{--                                                    d="M8.01059 0C3.87798 0 0.515625 3.35886 0.515625 7.48718C0.515625 11.6157 3.87798 14.9744 8.01059 14.9744C12.1434 14.9744 15.5056 11.6157 15.5056 7.48718C15.5056 3.35886 12.1434 0 8.01059 0ZM8.01059 13.5921C4.64086 13.5921 1.89931 10.8534 1.89931 7.48721C1.89931 4.12098 4.64086 1.38225 8.01059 1.38225C11.3803 1.38225 14.1219 4.12095 14.1219 7.48718C14.1219 10.8534 11.3803 13.5921 8.01059 13.5921Z"--}}
+{{--                                                    fill="white" />--}}
+{{--                                                <path--}}
+{{--                                                    d="M17.3302 15.8232L13.3636 11.8607C13.0933 11.5907 12.6556 11.5907 12.3853 11.8607C12.115 12.1305 12.115 12.5682 12.3853 12.838L16.3519 16.8004C16.487 16.9354 16.6639 17.0029 16.841 17.0029C17.0179 17.0029 17.195 16.9354 17.3302 16.8004C17.6005 16.5307 17.6005 16.0929 17.3302 15.8232Z"--}}
+{{--                                                    fill="white" />--}}
+{{--                                             </svg>--}}
+{{--                                          </span>--}}
+{{--                                                </button>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
                                         <li>
-                                            <div class="tp-header-main__search d-none d-md-block">
-                                                <button class="search-open-btn">
-                                          <span>
-                                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                                  xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M8.01059 0C3.87798 0 0.515625 3.35886 0.515625 7.48718C0.515625 11.6157 3.87798 14.9744 8.01059 14.9744C12.1434 14.9744 15.5056 11.6157 15.5056 7.48718C15.5056 3.35886 12.1434 0 8.01059 0ZM8.01059 13.5921C4.64086 13.5921 1.89931 10.8534 1.89931 7.48721C1.89931 4.12098 4.64086 1.38225 8.01059 1.38225C11.3803 1.38225 14.1219 4.12095 14.1219 7.48718C14.1219 10.8534 11.3803 13.5921 8.01059 13.5921Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M17.3302 15.8232L13.3636 11.8607C13.0933 11.5907 12.6556 11.5907 12.3853 11.8607C12.115 12.1305 12.115 12.5682 12.3853 12.838L16.3519 16.8004C16.487 16.9354 16.6639 17.0029 16.841 17.0029C17.0179 17.0029 17.195 16.9354 17.3302 16.8004C17.6005 16.5307 17.6005 16.0929 17.3302 15.8232Z"
-                                                    fill="white" />
-                                             </svg>
-                                          </span>
-                                                </button>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="tp-header-main__phone-wrap d-flex align-items-center d-none d-md-inline-flex">
+                                            <div class="tp-header-main__phone-wrap d-flex align-items-center d-none d-md-inline-flex tp-header-main__search">
                                                 <div class="tp-header-main__phone-icon">
                                                     <a href="#">
                                              <span>
@@ -399,7 +322,7 @@
                                                 </div>
                                                 <div class="tp-header-main__phone-content">
                                                     <span>Phone:</span>
-                                                    <a href="tel:+881900678956">+88 1900 6789 56</a>
+                                                    <a href="tel:{{ theme_option('site_phone') }}">{{ theme_option('site_phone') }}</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -419,87 +342,10 @@
             </div>
         </div>
     </div>
+    </div>
     <!-- header main area end -->
-
+{{--    <marquee behavior="Left" direction="">{{ theme_option('action_notice_box_text') }}</marquee>--}}
 </header>
-    <header class="header" >
-        <div class="topbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-12">
-                        <div class="top-left">
-                            <a><i class="fa fa-phone"></i>  {{ theme_option('site_phone') }}</a>
-                            <a> <i class="fa fa-envelope"></i> {{ theme_option('site_email') }}</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="top-text">
-                            <marquee behavior="Left" direction="">{{ theme_option('action_notice_box_text') }}</marquee>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-12">
-                        <div class="top-right">
-
-                            <a>{{ __('kamruldashboard::at_a_glance.eiin') }}: {{ theme_option('action_eiin_text') }}</a>
-                            <a><i class="ri-school-fill"></i> {{ __('kamruldashboard::at_a_glance.college_code') }}: {{ theme_option('action_college_code_text') }}</a>
-                            {!! Menus::renderMenuLocation('header-menu', [
-                               'view'    => 'menu_right_sub',
-                               'status'    => 'top-contact',
-                               'options' => ['class' => 'top-contact'],
-                           ]) !!}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                        {!! Menus::renderMenuLocation('header-menu', [
-                           'view'    => 'menu_right',
-                           'status'    => 'top-contact',
-                           'options' => ['class' => 'top-contact'],
-                       ]) !!}
-          @if (is_module_active('Language'))
-                {!! Theme::partial('language-switcher') !!}
-         @endif
-        <div class="header-inner">
-            <div class="container">
-                <div class="inner">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-2 col-md-2 col-12">
-                            <!-- Start Logo -->
-                            <div class="logo">
-                                <a href="{{ url('/') }}"><img src="{{ getImageUrlById($logo_image, 'shortcodes') }}" alt="{{ theme_option('site_title') }}"></a>
-                            </div>
-                            <!-- End Logo -->
-                            <!-- Mobile Nav -->
-                            <div class="mobile-nav"></div>
-                            <!-- End Mobile Nav -->
-                        </div>
-                        <div class="col-lg-8 col-md-6 col-12">
-                            <!-- Main Menu -->
-                            <div class="main-menu">
-                                <nav class="navigation">
-                                    {!! Menus::renderMenuLocation('main-menu', [
-                                        'view'    => 'menu',
-                                        'status'    => 'nav-item nav-link',
-                                        'options' => ['class' => 'nav menu'],
-                                    ]) !!}
-                                </nav>
-                            </div>
-                            <!--/ End Main Menu -->
-                        </div>
-                        <!--Search Bar-->
-                        <div class="col-lg-2 col-md-6 col-12">
-                            <div class="apply-btn">
-                                <a href="{{ url('admission-form') }}" class="btn">@lang('Apply Now')</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ End Header Inner -->
-    </header>
-
 {{--    {!! Menus::renderMenuLocation('mobile-menu', [--}}
 {{--       'view'    => 'menu_mobile',--}}
 {{--       'status'    => '',--}}

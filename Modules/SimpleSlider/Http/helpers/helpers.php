@@ -17,6 +17,9 @@ if (! defined('SIMPLE_SLIDER_ITEM_MODULE_SCREEN_NAME')) {
 if (! defined('SIMPLE_SLIDER_VIEW_TEMPLATE')) {
     define('SIMPLE_SLIDER_VIEW_TEMPLATE', 'simple-slider-view-template');
 }
+if (! defined('ADMINSERVICE_MODULE_SCREEN_NAME')) {
+    define('ADMINSERVICE_MODULE_SCREEN_NAME', 'adminservice');
+}
 //add_next_line
 
 if (! function_exists('get_all_simple_sliders')) {

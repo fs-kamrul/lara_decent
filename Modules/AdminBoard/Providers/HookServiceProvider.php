@@ -9,6 +9,10 @@ use Modules\AdminBoard\Repositories\Cache\AdminBoardCacheDecorator;
 use Modules\AdminBoard\Repositories\Eloquent\AdminBoardRepository;
 use Modules\AdminBoard\Repositories\Interfaces\AdminBoardInterface;
 //add_new_line_Interface_and_Repository_call
+use Modules\AdminBoard\Http\Models\AdminService;
+use Modules\AdminBoard\Repositories\Eloquent\AdminServiceRepository;
+use Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface;
+use Modules\AdminBoard\Repositories\Cache\AdminServiceCacheDecorator;
 use Modules\AdminBoard\Http\Models\AdminClub;
 use Modules\AdminBoard\Repositories\Eloquent\AdminClubRepository;
 use Modules\AdminBoard\Repositories\Interfaces\AdminClubInterface;
@@ -97,6 +101,12 @@ class HookServiceProvider extends ServiceProvider
             );
         });
 //add_new_line_Interface_and_Repository_to_hook
+        $this->app->bind(AdminServiceInterface::class, function () {
+            return new AdminServiceCacheDecorator(
+                new AdminServiceRepository(new AdminService)
+            );
+        });
+
         $this->app->bind(AdminClubInterface::class, function () {
             return new AdminClubCacheDecorator(
                 new AdminClubRepository(new AdminClub)
@@ -318,6 +328,19 @@ class HookServiceProvider extends ServiceProvider
                     'label' => __('Number of Gallery Board per page'),
                     'attributes' => [
                         'name' => 'number_of_number_of_admin_gallery_boards_per_page_per_page',
+                        'value' => 12,
+                        'options' => [
+                            'class' => 'form-control',
+                        ],
+                    ],
+                ])
+                ->setField([
+                    'id' => 'number_of_number_of_admin_service_per_page_per_page',
+                    'section_id' => 'opt-text-subsection-admin-board',
+                    'type' => 'number',
+                    'label' => __('Number of Service per page'),
+                    'attributes' => [
+                        'name' => 'number_of_number_of_admin_service_per_page_per_page',
                         'value' => 12,
                         'options' => [
                             'class' => 'form-control',

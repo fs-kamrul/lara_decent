@@ -11,6 +11,7 @@ use Modules\AdminBoard\Http\Models\AdminGalleryBoard;
 use Modules\AdminBoard\Http\Models\AdminNews;
 use Modules\AdminBoard\Http\Models\AdminNoticeBoard;
 use Modules\AdminBoard\Http\Models\AdminAcademicGroup;
+use Modules\AdminBoard\Http\Models\AdminService;
 use Modules\AdminBoard\Http\Models\AdminTeam;
 use Modules\AdminBoard\Http\Models\AdminWorkshop;
 use Modules\AdminBoard\Repositories\Interfaces\AdminCareerNavigatorInterface;
@@ -21,6 +22,7 @@ use Modules\AdminBoard\Repositories\Interfaces\AdminGalleryBoardInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminNewsInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminNoticeBoardInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminAcademicGroupInterface;
+use Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminTeamInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminWorkshopInterface;
 use Modules\KamrulDashboard\Http\Models\Slug;
@@ -745,6 +747,77 @@ class HandleFrontPages
                     'default_view' => 'adminboard::themes.admin_club',
                     'data' => compact('admin_club', 'images'),
                     'slug' => $admin_club->slug,
+                ];
+
+            case AdminService::class:
+                $path = 'adminboard/shortcode';
+                $adminBoardRepository = app(AdminServiceInterface::class);
+                $admin_service = $adminBoardRepository->advancedGet(array_merge([
+                    'with' => AdminBoardHelper::getAdminServiceRelationsQuery(),
+                    'condition' => ['id' => $slug->reference_id],
+                    'take' => 1,
+                ]));
+//                ], AdminBoardHelper::getReviewExtraData()));
+
+                if (! $admin_service) {
+                    abort(404);
+                }
+
+                if ($admin_service->slugable->key !== $slug->key) {
+                    return redirect()->to($admin_service->url);
+                }
+
+                SeoHelper::setTitle($admin_service->name)->setDescription(Str::words($admin_service->short_description, 120));
+
+                $meta = new SeoOpenGraph();
+                if ($admin_service->image) {
+                    $meta->setImage(url(getImageUrl($admin_service->photo, 'adminboard/adminservice')));
+                }
+                $meta->setDescription($admin_service->short_description);
+                $meta->setUrl($admin_service->url);
+                $meta->setTitle($admin_service->name);
+                $meta->setType('article');
+
+                SeoHelper::setSeoOpenGraph($meta);
+
+//                Theme::uses(Theme::getThemeName())->layout(setting('layout', 'other_page'));
+                $layout = MetaBox::getMetaData($admin_service, 'layout', true);
+                $layout = ($layout && in_array($layout, array_keys(get_admin_board_layouts()))) ? $layout : 'admin-default';
+//                Theme::layout($layout);
+                Theme::uses(Theme::getThemeName())->layout($layout);
+
+                Theme::breadcrumb()
+                    ->add(__('Home'), route('public.index'))
+                    ->add(__('adminboard::lang.adminservice'), route('public.adminservice'))
+                    ->add($admin_service->name);
+//                Theme::breadcrumb()
+//                    ->add(__('Admin admin_service'), route('public.adminadmin_service'))
+//                    ->add($admin_service->name);
+
+                Helper::handleViewCount($admin_service, 'viewed_admin_service');
+
+                do_action(BASE_ACTION_PUBLIC_RENDER_SINGLE, ADMINSERVICE_MODULE_SCREEN_NAME, $admin_service);
+
+                if (function_exists('admin_bar')) {
+                    admin_bar()->registerLink(__('Edit this admin_service'), route('adminservice.edit', $admin_service->id));
+                }
+
+                $images = [];
+                $images_array = $admin_service->AdminGalleryParameter->toArray();
+                if (! empty($images_array)) {
+                    foreach ($images_array as $imagep) {
+//                        dd($image['id']);
+                        $images[] = getAdminImageUrlById($imagep['id'], $path);
+                    }
+                }
+
+                $admin_services = AdminBoardHelper::getAdminServiceFilter((int) theme_option('number_of_admin_services_per_page') ?: 12, []);
+//                $up_admin_services = AdminBoardHelper::getAcademicGroupFilter(4, []);
+                return [
+                    'view' => 'admin_board.admin_service',
+                    'default_view' => 'adminboard::themes.admin_service',
+                    'data' => compact('admin_service', 'admin_services', 'images'),
+                    'slug' => $admin_service->slug,
                 ];
 
         }

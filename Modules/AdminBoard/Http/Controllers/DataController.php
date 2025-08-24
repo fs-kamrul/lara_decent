@@ -32,6 +32,7 @@ class DataController  extends Controller
                     auth()->user()->can('admintestimonial_access') ||
                     auth()->user()->can('adminpartner_access') ||
                     auth()->user()->can('adminacademicgroup_access') ||
+                    auth()->user()->can('adminservice_access') ||
                     auth()->user()->can('adminworkshop_access')) {
                     $menu->dropdown(__('adminboard::lang.adminboard'), function ($sub) {
 //                        if(auth()->user()->can('adminboard_access')) {
@@ -64,6 +65,13 @@ class DataController  extends Controller
                                 __('adminboard::lang.adminnews'),
                                 ['icon' => 'icon-file-signature']
                     )->order(20); } //next_lint
+                if(auth()->user()->can('adminservice_access')) {
+                    $sub->url(
+                        action('\Modules\AdminBoard\Http\Controllers\AdminServiceController@index'),
+                        __('adminboard::lang.adminservice'),
+                        ['icon' => 'icon-file-signature']
+                    )->order(20); }
+
                 if(auth()->user()->can('adminclub_access')) {
                     $sub->url(
                         action('\Modules\AdminBoard\Http\Controllers\AdminClubController@index'),
@@ -163,6 +171,7 @@ class DataController  extends Controller
         }
     }
 }
+
 
 
 

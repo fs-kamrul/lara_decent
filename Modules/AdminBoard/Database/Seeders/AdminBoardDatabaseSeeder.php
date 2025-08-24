@@ -19,6 +19,9 @@ class AdminBoardDatabaseSeeder extends Seeder
         $this->call(
             [
                 AdminBoardPermissionSeeder::class,
+                AdminServicePermissionSeeder::class,
+
+                AdminServiceSeeder::class,
                 AdminClubPermissionSeeder::class,
                 AdminGalleryBoardPermissionSeeder::class,
                 AdminStudentGuidelinePermissionSeeder::class,
@@ -53,3 +56,4 @@ class AdminBoardDatabaseSeeder extends Seeder
         );
     }
 }
+

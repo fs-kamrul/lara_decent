@@ -387,4 +387,46 @@ class PublicController extends DboardController
 
         return Theme::scope('admin_board.admin_clubs', compact('admin_clubs'), 'pag')->render();
     }
+    public function getAdminServicePrefix(Request $request)
+    {
+        SeoHelper::setTitle(__('adminboard::lang.adminservice'));
+
+        $conditions = [
+            'id' => '6',
+            'adminboard' => 'academicgroup',
+        ];
+//        $admin_service = app(AdminCategoryInterface::class)->advancedGet([
+//            'condition' => $conditions,
+//            'take'      => 1,
+////            'order_by' => ['created_at' => 'desc'],
+//        ]);
+        $admin_services = AdminBoardHelper::getAdminServiceFilter((int) theme_option('number_of_admin_service_per_page') ?: 12, []);
+//        $admin_services = $admin_services->adminadmin_services()->orderBy('id', 'DESC')->Paginate((int)theme_option('number_of_admin_service_per_page') ?: 12);
+//        dd($admin_services);
+        Theme::breadcrumb()
+            ->add(__('Home'), route('public.index'))
+            ->add(__('adminboard::lang.adminservice'));
+//            ->add($admin_services->name);
+//        theme_option('site_title','');
+//        $layout = MetaBox::getMetaData($admin_services, 'layout', true);
+//        $layout = ($layout && in_array($layout, array_keys(get_admin_board_layouts()))) ? $layout : 'admin-default';
+        Theme::uses(Theme::getThemeName())->layout(theme_option('admin-layout', 'admin-default'));
+//        Theme::uses(Theme::getThemeName())->layout('other_page');
+//        dd($projects);
+        if ($request->ajax()) {
+//            dd(1);
+            if ($request->input('minimal')) {
+                return $this
+                    ->httpResponse()
+                    ->setData(Theme::partial('search-suggestion', ['items' => $admin_services]));
+            }
+
+            return $this
+                ->httpResponse()
+                ->setData(Theme::partial('admin_board.admin_services.items', compact('admin_services')));
+        }
+//        dd($projects);
+
+        return Theme::scope('admin_board.admin_services', compact('admin_services'), 'pag')->render();
+    }
 }

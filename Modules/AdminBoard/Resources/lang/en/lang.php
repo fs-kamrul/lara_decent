@@ -79,6 +79,13 @@ return [
         'select_all' => 'Select all',
         'deselect_all' => 'Deselect all',
     ],
+    'adminservice' => 'Service',
+    'adminservice_add' => 'Service add',
+    'adminservice_create' => 'Service create',
+    'adminservice_edit' => 'Service edit',
+    'adminservice_show' => 'Service show',
+    'adminservice_import' => 'Service Import',
+
     'adminclub' => 'Club',
     'adminclub_add' => 'Club add',
     'adminclub_create' => 'Club create',
@@ -190,3 +197,4 @@ return [
     'adminworkshop_import' => 'Workshop Import',
 
 ];
+

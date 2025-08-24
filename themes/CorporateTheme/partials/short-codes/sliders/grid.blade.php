@@ -1,14 +1,13 @@
-<section class="slider">
-    <div class="hero-slider">
-        @foreach($sliders as $slider)
-            <div class="single-slider" style="background-image:url('{{ getImageUrlById($slider->image,'shortcodes') }}')">
-                <div class="container">
-                    <div class="row">
-                        {!! Theme::partial('short-codes.sliders.content', compact('slider')) !!}
 
-                    </div>
-                </div>
-            </div>
+<div class="tp-hero__area tp-hero__mt">
+    <div class="tp-hero__slider-active p-relative">
+        @foreach($sliders as $slider)
+
+        <div class="tp-hero__bg tp-hero__overlay d-flex align-items-center" data-background="{{ getImageUrlById($slider->image,'shortcodes') }}">
+            {!! Theme::partial('short-codes.sliders.content', compact('slider')) !!}
+
+        </div>
         @endforeach
     </div>
-</section>
+</div>
+

@@ -57,7 +57,7 @@ class SimpleSliderItemController extends DboardController
         $data = array();
         $data['title']        = __('simpleslider::simple-slider.edit_slide_new');
         $data['record']        = $simpleSliderItem;
-        $data['simple_slider_id']        = $id;
+        $data['simple_slider_id']        = $simpleSliderItem->simple_slider_id;
         return view('simpleslider::simpleslideritems.create',$data);
 
 //        return $formBuilder->create(SimpleSliderItemForm::class, ['model' => $simpleSliderItem])

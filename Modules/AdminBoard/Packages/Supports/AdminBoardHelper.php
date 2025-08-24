@@ -7,6 +7,7 @@ use Illuminate\Contracts\Database\Query\Builder;
 use Modules\AdminBoard\Repositories\Interfaces\AdminCareerNavigatorInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminClubInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminGalleryBoardInterface;
+use Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminStudentGuidelineInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminAcademicGroupInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminCategoryInterface;
@@ -550,6 +551,51 @@ class AdminBoardHelper
     }
 
     public function getAdminClubRelationsQuery(): array
+    {
+        return [
+            'slugable:id,key,prefix,reference_id',
+//            'state:id,name',
+//            'city:id,name',
+//            'categories' => function (Builder $query) {
+//                return $query
+//                    ->wherePublished()
+//                    ->orderBy('created_at', 'DESC')
+//                    ->orderBy('is_default', 'DESC')
+//                    ->orderBy('order', 'ASC')
+//                    ->select('re_categories.id', 're_categories.name');
+//            },
+        ];
+    }
+    public function getAdminServiceFilter(?int $perPage = 12, array $extra = [])
+    {
+        $request = request();
+
+//        $perPage = $request->integer('per_page') ?: ($perPage ?: 12);
+        $perPage = (int) $request->input('per_page', $perPage ?: 12);
+
+        $filters = $request->validate(apply_filters('projects_filter_validation_rules', [
+            'keyword' => 'nullable|string|max:255',
+            'location' => 'nullable|string',
+            'sort_by' => 'nullable|string',
+            'blocks' => 'nullable|numeric',
+            'locations' => 'nullable|array',
+        ]));
+
+        $filters['keyword'] = $request->input('k');
+
+        $params = array_merge([
+            'paginate' => [
+                'per_page' => (int) $perPage,  // Ensure perPage is an integer
+                'current_paged' => (int) $request->input('page', 1), // Cast to integer
+            ],
+            'order_by' => ['admin_services.created_at' => 'DESC'],
+            'with' => self::getAdminServiceRelationsQuery(),
+        ], $extra);
+
+        return app(AdminServiceInterface::class)->getAdminServiceGroup($filters, $params);
+    }
+
+    public function getAdminServiceRelationsQuery(): array
     {
         return [
             'slugable:id,key,prefix,reference_id',

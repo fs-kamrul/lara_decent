@@ -1,4 +1,15 @@
 <?php
+Route::group(['middleware' => ['auth', '\Modules\KamrulDashboard\Http\Middleware\IsInstalled', '\Modules\KamrulDashboard\Http\Middleware\AdminSidebarMenu']], function () {
+    Route::group(['prefix' => DboardHelper::getAdminPrefix()], function () {
+        Route::resource('adminservice', 'AdminServiceController');
+        Route::delete('adminservice/items/destroy', [
+            'as'         => 'adminservice.deletes',
+            'uses'       => 'AdminServiceController@deletes',
+        ]);
+    });
+});
+?>
+<?php
 
 //use Modules\Theme\Events\ThemeRoutingBeforeEvent;
 //use Modules\Theme\Events\ThemeRoutingAfterEvent;

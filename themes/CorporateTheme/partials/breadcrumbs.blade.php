@@ -1,19 +1,30 @@
 
-<div class="col-12">
-    <h1>{{ SeoHelper::getTitle() }}</h1>
-    <ul class="bread-list">
-        @foreach (Theme::breadcrumb()->getCrumbs() as $i => $crumb)
-            @if ($i != (count(Theme::breadcrumb()->getCrumbs()) - 1))
-                <li class="">
-                    <a href="{{ $crumb['url'] }}">{!! $crumb['label'] !!}</a><span></span>
-                    <i class="icofont-simple-right"></i>
-                </li>
-            @else
-                <li class="active">
-{{--                    <i class="icofont-simple-right"></i>--}}
-                    {!! $crumb['label'] !!}
-                </li>
-            @endif
-        @endforeach
-    </ul>
+<div class="breadcrumb__area breadcrumb__overlay breadcrumb__height p-relative fix" data-background="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/hero/hero-3-2.jpg') }}">
+    <div class="container">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__content z-index text-center">
+                    <div class="breadcrumb__list">
+                        @foreach (Theme::breadcrumb()->getCrumbs() as $i => $crumb)
+                            @if ($i != (count(Theme::breadcrumb()->getCrumbs()) - 1))
+                                <span class="">
+                                    <a href="{{ $crumb['url'] }}">{!! $crumb['label'] !!}</a>
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                            @else
+                                <span class="active">
+                                    {{--                    <i class="icofont-simple-right"></i>--}}
+                                    {!! $crumb['label'] !!}
+                                </span>
+                            @endif
+                        @endforeach
+{{--                        <span><a href="index.html">Home</a></span>--}}
+{{--                        <span class="dvdr"><i class="fa fa-angle-right"></i></span>--}}
+{{--                        <span>Service</span>--}}
+                    </div>
+                    <h3 class="breadcrumb__title">{{ SeoHelper::getTitle() }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -11,6 +11,7 @@ use Modules\AdminBoard\Http\Models\AdminCareerNavigator;
 use Modules\AdminBoard\Http\Models\AdminNoticeBoard;
 use Modules\AdminBoard\Http\Models\AdminAcademicGroup;
 use Modules\AdminBoard\Http\Models\AdminClub;
+use Modules\AdminBoard\Http\Models\AdminService;
 USE Modules\AdminBoard\Http\Models\AdminStudentGuideline;
 
 Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware' => ['web']], function () {
@@ -29,6 +30,7 @@ Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware'
             $galleryPrefix = SlugHelper::getPrefix(AdminGalleryBoard::class, 'gallery') ?: 'gallery';
             $facilityPrefix = SlugHelper::getPrefix(AdminFacility::class, 'facility') ?: 'facility';
             $adminClubPrefix = SlugHelper::getPrefix(AdminClub::class, 'clubs') ?: 'clubs';
+            $adminServicePrefix = SlugHelper::getPrefix(AdminService::class, 'services') ?: 'services';
 
             Route::match(theme_option('workshop_list_page_id') ? ['POST'] : ['POST', 'GET'], $workshopPrefix, [PublicController::class, 'getWorkshop'])
                 ->name('public.adminworkshop');
@@ -55,6 +57,8 @@ Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware'
                 ->name('public.adminfacility');
             Route::match(theme_option('academic_group_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminClubPrefix, [PublicController::class, 'getAdminClubPrefix'])
                 ->name('public.adminclub');
+            Route::match(theme_option('academic_group_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminServicePrefix, [PublicController::class, 'getAdminServicePrefix'])
+                ->name('public.adminservice');
         });
     }
 });
