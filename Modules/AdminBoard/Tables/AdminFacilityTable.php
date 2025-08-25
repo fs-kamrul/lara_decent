@@ -163,6 +163,11 @@ class AdminFacilityTable extends TableAbstract
                 'choices' => AdminFacilityStatusEnum::labels(),
                 'validate' => 'required',
             ],
+            'order' => [
+                'title' => trans('table::lang.order'),
+                'type' => 'number',
+                'validate' => 'required|max:120',
+            ],
             'created_at' => [
                 'title' => trans('table::lang.created_at'),
                 'type' => 'date',

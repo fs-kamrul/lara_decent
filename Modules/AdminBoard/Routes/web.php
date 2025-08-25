@@ -1,6 +1,17 @@
 <?php
 Route::group(['middleware' => ['auth', '\Modules\KamrulDashboard\Http\Middleware\IsInstalled', '\Modules\KamrulDashboard\Http\Middleware\AdminSidebarMenu']], function () {
     Route::group(['prefix' => DboardHelper::getAdminPrefix()], function () {
+        Route::resource('adminpackage', 'AdminPackageController');
+        Route::delete('adminpackage/items/destroy', [
+            'as'         => 'adminpackage.deletes',
+            'uses'       => 'AdminPackageController@deletes',
+        ]);
+    });
+});
+?>
+<?php
+Route::group(['middleware' => ['auth', '\Modules\KamrulDashboard\Http\Middleware\IsInstalled', '\Modules\KamrulDashboard\Http\Middleware\AdminSidebarMenu']], function () {
+    Route::group(['prefix' => DboardHelper::getAdminPrefix()], function () {
         Route::resource('adminservice', 'AdminServiceController');
         Route::delete('adminservice/items/destroy', [
             'as'         => 'adminservice.deletes',

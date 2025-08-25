@@ -39,6 +39,16 @@ class CreateAdminFacilityTable extends Migration
                 $table->primary(['lang_code', 'admin_facilities_id'], 'admin_workshops_translations_primary');
             });
         }
+
+        if (! Schema::hasTable('admin_facilities_names')) {
+            Schema::create('admin_facilities_names', function (Blueprint $table) {
+                $table->id();
+                $table->integer('facilities_id')->unsigned();
+                $table->integer('reference_id')->unsigned();
+                $table->string('reference_type', 255);
+                $table->string('name_title', 255)->nullable();
+            });
+        }
     }
 
     /**
@@ -50,5 +60,6 @@ class CreateAdminFacilityTable extends Migration
     {
         Schema::dropIfExists('admin_facilities');
         Schema::dropIfExists('admin_facilities_translations');
+        Schema::dropIfExists('admin_facilities_names');
     }
 };

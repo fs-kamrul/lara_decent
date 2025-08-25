@@ -79,6 +79,13 @@ return [
         'select_all' => 'Select all',
         'deselect_all' => 'Deselect all',
     ],
+    'adminpackage' => 'Package',
+    'adminpackage_add' => 'Package add',
+    'adminpackage_create' => 'Package create',
+    'adminpackage_edit' => 'Package edit',
+    'adminpackage_show' => 'Package show',
+    'adminpackage_import' => 'Package Import',
+
     'adminservice' => 'Service',
     'adminservice_add' => 'Service add',
     'adminservice_create' => 'Service create',
@@ -165,12 +172,12 @@ return [
     'admincategory_show' => 'Category show',
     'admincategory_import' => 'Category Import',
 
-    'adminteam' => 'Faculty',
-    'adminteam_add' => 'Faculty add',
-    'adminteam_create' => 'Faculty create',
-    'adminteam_edit' => 'Faculty edit',
-    'adminteam_show' => 'Faculty show',
-    'adminteam_import' => 'Faculty Import',
+    'adminteam' => 'Team',
+    'adminteam_add' => 'Team add',
+    'adminteam_create' => 'Team create',
+    'adminteam_edit' => 'Team edit',
+    'adminteam_show' => 'Team show',
+    'adminteam_import' => 'Team Import',
     'facebook_id' => 'Facebook URL',
     'google_site' => 'Google Site URL',
     'linkedin_id' => 'Linkedin URL',
@@ -197,4 +204,3 @@ return [
     'adminworkshop_import' => 'Workshop Import',
 
 ];
-

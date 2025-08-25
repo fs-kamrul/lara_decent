@@ -55,8 +55,8 @@ class AdminBoardServiceProvider extends ServiceProvider
         SlugHelper::registerModule(AdminEvent::class, 'Event Posts');
         SlugHelper::setPrefix(AdminEvent::class, 'event', true);
 
-        SlugHelper::registerModule(AdminTeam::class, 'Faculty Posts');
-        SlugHelper::setPrefix(AdminTeam::class, 'faculty', true);
+        SlugHelper::registerModule(AdminTeam::class, 'Team Posts');
+        SlugHelper::setPrefix(AdminTeam::class, 'team', true);
 
         SlugHelper::registerModule(AdminCategory::class, 'Category Posts');
         SlugHelper::setPrefix(AdminCategory::class, 'category', true);

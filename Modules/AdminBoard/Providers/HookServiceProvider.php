@@ -9,6 +9,10 @@ use Modules\AdminBoard\Repositories\Cache\AdminBoardCacheDecorator;
 use Modules\AdminBoard\Repositories\Eloquent\AdminBoardRepository;
 use Modules\AdminBoard\Repositories\Interfaces\AdminBoardInterface;
 //add_new_line_Interface_and_Repository_call
+use Modules\AdminBoard\Http\Models\AdminPackage;
+use Modules\AdminBoard\Repositories\Eloquent\AdminPackageRepository;
+use Modules\AdminBoard\Repositories\Interfaces\AdminPackageInterface;
+use Modules\AdminBoard\Repositories\Cache\AdminPackageCacheDecorator;
 use Modules\AdminBoard\Http\Models\AdminService;
 use Modules\AdminBoard\Repositories\Eloquent\AdminServiceRepository;
 use Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface;
@@ -101,6 +105,12 @@ class HookServiceProvider extends ServiceProvider
             );
         });
 //add_new_line_Interface_and_Repository_to_hook
+        $this->app->bind(AdminPackageInterface::class, function () {
+            return new AdminPackageCacheDecorator(
+                new AdminPackageRepository(new AdminPackage)
+            );
+        });
+
         $this->app->bind(AdminServiceInterface::class, function () {
             return new AdminServiceCacheDecorator(
                 new AdminServiceRepository(new AdminService)
@@ -370,3 +380,4 @@ class HookServiceProvider extends ServiceProvider
         return (new HandleFrontPages())->handle($slug);
     }
 }
+

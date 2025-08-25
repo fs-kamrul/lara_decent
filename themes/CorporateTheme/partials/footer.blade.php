@@ -1,5 +1,8 @@
 
-<footer>
+<footer class="p-relative">
+    <div class="tp-footer-2__shape-1 z-index-1">
+        <img src="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/footer/footer-shape-1.png') }}" alt="">
+    </div>
     <!-- Footer Top -->
     <div class="tp-footer__area black-bg-3 pt-150 pb-30">
         <div class="container">

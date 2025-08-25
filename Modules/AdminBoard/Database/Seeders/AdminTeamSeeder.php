@@ -50,6 +50,7 @@ class AdminTeamSeeder extends Seeder
                 'facebook_id' => $faker->userName, // Simulates a Facebook ID
                 'google_site' => $faker->userName,       // Simulates a Google site URL
                 'linkedin_id' => $faker->userName,  // Simulates a LinkedIn ID
+                'index_no' => $faker->numberBetween(11111,99999),  // Simulates a LinkedIn ID
                 'father_name' => $faker->name,  // Simulates a LinkedIn ID
                 'mother_name' => $faker->name,  // Simulates a LinkedIn ID
                 'dob' => $faker->date,  // Simulates a LinkedIn ID
