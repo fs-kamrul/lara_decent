@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\AdminBoard\Forms\AdminPackageForm;
+use Modules\AdminBoard\Services\SaveFacilitiesService;
 use Modules\KamrulDashboard\Events\DeletedContentEvent;
 use Modules\KamrulDashboard\Events\UpdatedContentEvent;
 use Modules\KamrulDashboard\Events\CreatedContentEvent;
@@ -21,6 +22,7 @@ use Modules\AdminBoard\Http\Imports\AdminPackageImport;
 use Modules\AdminBoard\Tables\AdminPackageTable;
 use mysql_xdevapi\Exception;
 use Throwable;
+use Assets;
 
 class AdminPackageController extends Controller
 {
@@ -130,6 +132,9 @@ class AdminPackageController extends Controller
         }
         page_title()->setTitle(trans('adminboard::lang.adminpackage_create'));
 
+        Assets::addScriptsDirectly('vendor/Modules/AdminBoard/js/components.js');
+        Assets::usingVueJS();
+
         return AdminPackageForm::create()->renderForm();
         //$data = array();
         //$data['title']        = 'adminpackage_create';
@@ -144,7 +149,7 @@ class AdminPackageController extends Controller
      * @return DboardHttpResponse
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, DboardHttpResponse $response)
+    public function store(Request $request, DboardHttpResponse $response, SaveFacilitiesService $saveFacilitiesService)
     {
         if (!auth()->user()->can('adminpackage_create')) {
             abort(403, 'Unauthorized action.');
@@ -173,6 +178,9 @@ class AdminPackageController extends Controller
                 $record->$file_name      = processUpload($request, $record,$file_name, $path);
                 $record->save();
             }
+
+            $saveFacilitiesService->execute($record, $request->input('facilities', []));
+
             event(new CreatedContentEvent(ADMINPACKAGE_MODULE_SCREEN_NAME, $request, $record));
 
             return $response
@@ -232,6 +240,9 @@ class AdminPackageController extends Controller
         }
         page_title()->setTitle(trans('adminboard::lang.adminpackage_edit'));
 
+        Assets::addScriptsDirectly('vendor/Modules/AdminBoard/js/components.js');
+        Assets::usingVueJS();
+
         return AdminPackageForm::createFromModel($adminpackage)->renderForm();
      //   $data = array();
       //  $data['title']        = 'adminpackage_edit';
@@ -248,7 +259,7 @@ class AdminPackageController extends Controller
      * @return DboardHttpResponse
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AdminPackage  $adminpackage, DboardHttpResponse $response)
+    public function update(Request $request, AdminPackage  $adminpackage, DboardHttpResponse $response, SaveFacilitiesService $saveFacilitiesService)
     {
         if (!auth()->user()->can('adminpackage_edit')) {
             abort(403, 'Unauthorized action.');
@@ -276,6 +287,8 @@ class AdminPackageController extends Controller
             $adminpackage->save();
         }
 
+//        dd($request->input('facilities', []));
+        $saveFacilitiesService->execute($adminpackage, $request->input('facilities', []));
         event(new UpdatedContentEvent(ADMINPACKAGE_MODULE_SCREEN_NAME, $request, $adminpackage));
 
         return $response

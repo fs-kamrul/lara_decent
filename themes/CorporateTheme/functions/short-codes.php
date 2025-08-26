@@ -162,6 +162,22 @@ app()->booted(function () {
             $post_types = app(PosttypeInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
             return Theme::partial('short-codes.our-services-admin-config', compact('attributes','post_types'));
         });
+        add_shortcode('our-packages', __('Our Packages'), __('Add Our Packages'),
+            function ($shortcode) {
+                $attributes = $shortcode->toArray();
+                $adminBoardRepository = app(\Modules\AdminBoard\Repositories\Interfaces\AdminPackageInterface::class);
+                $packages = $adminBoardRepository->advancedGet(array_merge([
+                    'take' => Arr::get($attributes, 'number_of_slide'),
+                    'order_by' => ['created_at' => 'desc'],
+                ]));
+//                dd($facilities);
+//                $facilities = AdminBoardHelper::getFacilityFilter((int) Arr::get($attributes, 'number_of_slide'), []);
+                return Theme::partial('short-codes.our-packages', ['shortcode' => $shortcode,'packages' => $packages]);
+            });
+        shortcode()->setAdminConfig('our-packages', function ($attributes) {
+            $post_types = app(PosttypeInterface::class)->allBy(['status' => Dboardstatus::PUBLISHED]);
+            return Theme::partial('short-codes.our-packages-admin-config', compact('attributes','post_types'));
+        });
 
 //        add_shortcode('our-facility', __('Our Facilities'), __('Add Our Facilities'),
 //            function ($shortcode) {

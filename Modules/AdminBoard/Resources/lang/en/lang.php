@@ -67,6 +67,11 @@ return [
     'select_all' => 'Select All',
     'id' => 'Id',
     'action' => 'Action',
+    'name_limit' => 'Limit',
+    'tag_line' => 'Tag Line',
+    'price' => 'Price',
+    'price_map' => 'Duration (EX: Month)',
+    'name_size' => 'Size (EX: Mbps)',
     'create_by' => 'Create By',
     'publish' => 'Publish',
     'datatables' =>[

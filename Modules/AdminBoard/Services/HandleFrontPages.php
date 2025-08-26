@@ -22,6 +22,7 @@ use Modules\AdminBoard\Repositories\Interfaces\AdminGalleryBoardInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminNewsInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminNoticeBoardInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminAcademicGroupInterface;
+use Modules\AdminBoard\Repositories\Interfaces\AdminPackageInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminTeamInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminWorkshopInterface;
@@ -818,6 +819,76 @@ class HandleFrontPages
                     'default_view' => 'adminboard::themes.admin_service',
                     'data' => compact('admin_service', 'admin_services', 'images'),
                     'slug' => $admin_service->slug,
+                ];
+            case AdminPackage::class:
+                $path = 'adminboard/shortcode';
+                $adminBoardRepository = app(AdminPackageInterface::class);
+                $admin_package = $adminBoardRepository->advancedGet(array_merge([
+                    'with' => AdminBoardHelper::getAdminPackageRelationsQuery(),
+                    'condition' => ['id' => $slug->reference_id],
+                    'take' => 1,
+                ]));
+//                ], AdminBoardHelper::getReviewExtraData()));
+
+                if (! $admin_package) {
+                    abort(404);
+                }
+
+                if ($admin_package->slugable->key !== $slug->key) {
+                    return redirect()->to($admin_package->url);
+                }
+
+                SeoHelper::setTitle($admin_package->name)->setDescription(Str::words($admin_package->short_description, 120));
+
+                $meta = new SeoOpenGraph();
+                if ($admin_package->image) {
+                    $meta->setImage(url(getImageUrl($admin_package->photo, 'adminboard/adminpackage')));
+                }
+                $meta->setDescription($admin_package->short_description);
+                $meta->setUrl($admin_package->url);
+                $meta->setTitle($admin_package->name);
+                $meta->setType('article');
+
+                SeoHelper::setSeoOpenGraph($meta);
+
+//                Theme::uses(Theme::getThemeName())->layout(setting('layout', 'other_page'));
+                $layout = MetaBox::getMetaData($admin_package, 'layout', true);
+                $layout = ($layout && in_array($layout, array_keys(get_admin_board_layouts()))) ? $layout : 'admin-default';
+//                Theme::layout($layout);
+                Theme::uses(Theme::getThemeName())->layout($layout);
+
+                Theme::breadcrumb()
+                    ->add(__('Home'), route('public.index'))
+                    ->add(__('adminboard::lang.adminpackage'), route('public.adminpackage'))
+                    ->add($admin_package->name);
+//                Theme::breadcrumb()
+//                    ->add(__('Admin admin_package'), route('public.adminadmin_package'))
+//                    ->add($admin_package->name);
+
+                Helper::handleViewCount($admin_package, 'viewed_admin_package');
+
+                do_action(BASE_ACTION_PUBLIC_RENDER_SINGLE, ADMINPACKAGE_MODULE_SCREEN_NAME, $admin_package);
+
+                if (function_exists('admin_bar')) {
+                    admin_bar()->registerLink(__('Edit this admin_package'), route('adminpackage.edit', $admin_package->id));
+                }
+
+                $images = [];
+                $images_array = $admin_package->AdminGalleryParameter->toArray();
+                if (! empty($images_array)) {
+                    foreach ($images_array as $imagep) {
+//                        dd($image['id']);
+                        $images[] = getAdminImageUrlById($imagep['id'], $path);
+                    }
+                }
+
+                $admin_packages = AdminBoardHelper::getAdminPackageFilter((int) theme_option('number_of_admin_package_per_page') ?: 12, []);
+//                $up_admin_packages = AdminBoardHelper::getAcademicGroupFilter(4, []);
+                return [
+                    'view' => 'admin_board.admin_package',
+                    'default_view' => 'adminboard::themes.admin_package',
+                    'data' => compact('admin_package', 'admin_packages', 'images'),
+                    'slug' => $admin_package->slug,
                 ];
 
         }

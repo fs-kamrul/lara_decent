@@ -4,6 +4,7 @@ namespace Modules\AdminBoard\Http\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Modules\AdminBoard\Enums\AdminPackageStatusEnum;
 use Modules\KamrulDashboard\Casts\SafeContent;
 use Modules\KamrulDashboard\Http\Models\DboardModel;
@@ -34,6 +35,11 @@ class AdminPackage extends DboardModel
         'name',
         'description',
         'short_description',
+        'name_limit',
+        'name_size',
+        'tag_line',
+        'price',
+        'price_map',
         'photo',
         'order',
         'slug',
@@ -57,5 +63,9 @@ class AdminPackage extends DboardModel
     {
         return $this->where('status', 'active');
 //        return rtrim(url($this->url), '/') == rtrim(Request::url(), '/');
+    }
+    public function admin_facilities(): MorphToMany
+    {
+        return $this->morphToMany(AdminFacility::class, 'reference', 'admin_facilities_names','facilities_id','reference_id')->withPivot('name_title')->orderBy('order');
     }
 }

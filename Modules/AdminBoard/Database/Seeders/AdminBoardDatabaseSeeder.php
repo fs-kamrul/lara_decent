@@ -47,7 +47,7 @@ class AdminBoardDatabaseSeeder extends Seeder
                 AdminTeamSeeder::class,
                 AdminEducationSeeder::class,
 //                AdminCareerNavigatorsSeeder::class,
-//                AdminFacilitySeeder::class,
+                AdminFacilitySeeder::class,
 //                AdminTestimonialSeeder::class,
 //                AdminPartnerSeeder::class,
 //                AdminNoticeBoardSeeder::class,

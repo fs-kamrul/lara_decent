@@ -332,12 +332,12 @@ class HookServiceProvider extends ServiceProvider
                     ],
                 ])
                 ->setField([
-                    'id' => 'number_of_number_of_admin_gallery_boards_per_page_per_page',
+                    'id' => 'number_of_admin_gallery_boards_per_page',
                     'section_id' => 'opt-text-subsection-admin-board',
                     'type' => 'number',
                     'label' => __('Number of Gallery Board per page'),
                     'attributes' => [
-                        'name' => 'number_of_number_of_admin_gallery_boards_per_page_per_page',
+                        'name' => 'number_of_admin_gallery_boards_per_page',
                         'value' => 12,
                         'options' => [
                             'class' => 'form-control',
@@ -345,12 +345,25 @@ class HookServiceProvider extends ServiceProvider
                     ],
                 ])
                 ->setField([
-                    'id' => 'number_of_number_of_admin_service_per_page_per_page',
+                    'id' => 'number_of_admin_service_per_page',
                     'section_id' => 'opt-text-subsection-admin-board',
                     'type' => 'number',
                     'label' => __('Number of Service per page'),
                     'attributes' => [
-                        'name' => 'number_of_number_of_admin_service_per_page_per_page',
+                        'name' => 'number_of_admin_service_per_page',
+                        'value' => 12,
+                        'options' => [
+                            'class' => 'form-control',
+                        ],
+                    ],
+                ])
+                ->setField([
+                    'id' => 'number_of_admin_package_per_page',
+                    'section_id' => 'opt-text-subsection-admin-board',
+                    'type' => 'number',
+                    'label' => __('Number of Service per page'),
+                    'attributes' => [
+                        'name' => 'number_of_admin_package_per_page',
                         'value' => 12,
                         'options' => [
                             'class' => 'form-control',

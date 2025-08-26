@@ -19,6 +19,10 @@ if (! defined('ADMINGALLERY_MODULE_SCREEN_NAME')) {
     define('ADMINGALLERY_MODULE_SCREEN_NAME', 'admingallery');
 }
 
+if (! defined('ADMINPACKAGE_MODULE_SCREEN_NAME')) {
+    define('ADMINPACKAGE_MODULE_SCREEN_NAME', 'adminpackage');
+}
+
 if (! defined('ADMINSTUDENTGUIDELINE_MODULE_SCREEN_NAME')) {
     define('ADMINSTUDENTGUIDELINE_MODULE_SCREEN_NAME', 'adminstudentguideline');
 }

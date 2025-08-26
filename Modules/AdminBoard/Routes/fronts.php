@@ -13,6 +13,7 @@ use Modules\AdminBoard\Http\Models\AdminAcademicGroup;
 use Modules\AdminBoard\Http\Models\AdminClub;
 use Modules\AdminBoard\Http\Models\AdminService;
 USE Modules\AdminBoard\Http\Models\AdminStudentGuideline;
+USE Modules\AdminBoard\Http\Models\AdminPackage;
 
 Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware' => ['web']], function () {
 
@@ -31,6 +32,7 @@ Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware'
             $facilityPrefix = SlugHelper::getPrefix(AdminFacility::class, 'facility') ?: 'facility';
             $adminClubPrefix = SlugHelper::getPrefix(AdminClub::class, 'clubs') ?: 'clubs';
             $adminServicePrefix = SlugHelper::getPrefix(AdminService::class, 'services') ?: 'services';
+            $adminPackagePrefix = SlugHelper::getPrefix(AdminPackage::class, 'packages') ?: 'packages';
 
             Route::match(theme_option('workshop_list_page_id') ? ['POST'] : ['POST', 'GET'], $workshopPrefix, [PublicController::class, 'getWorkshop'])
                 ->name('public.adminworkshop');
@@ -55,10 +57,12 @@ Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware'
                 ->name('public.admingalleryboard');
             Route::match(theme_option('facility_list_page_id') ? ['POST'] : ['POST', 'GET'], $facilityPrefix, [PublicController::class, 'getFacility'])
                 ->name('public.adminfacility');
-            Route::match(theme_option('academic_group_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminClubPrefix, [PublicController::class, 'getAdminClubPrefix'])
+            Route::match(theme_option('club_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminClubPrefix, [PublicController::class, 'getAdminClubPrefix'])
                 ->name('public.adminclub');
-            Route::match(theme_option('academic_group_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminServicePrefix, [PublicController::class, 'getAdminServicePrefix'])
+            Route::match(theme_option('service_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminServicePrefix, [PublicController::class, 'getAdminServicePrefix'])
                 ->name('public.adminservice');
+            Route::match(theme_option('package_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminPackagePrefix, [PublicController::class, 'getAdminPackagePrefix'])
+                ->name('public.adminpackage');
         });
     }
 });

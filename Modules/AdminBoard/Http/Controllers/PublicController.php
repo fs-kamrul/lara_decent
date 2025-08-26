@@ -429,4 +429,46 @@ class PublicController extends DboardController
 
         return Theme::scope('admin_board.admin_services', compact('admin_services'), 'pag')->render();
     }
+    public function getAdminPackagePrefix(Request $request)
+    {
+        SeoHelper::setTitle(__('adminboard::lang.adminpackage'));
+
+        $conditions = [
+            'id' => '6',
+            'adminboard' => 'academicgroup',
+        ];
+//        $admin_package = app(AdminCategoryInterface::class)->advancedGet([
+//            'condition' => $conditions,
+//            'take'      => 1,
+////            'order_by' => ['created_at' => 'desc'],
+//        ]);
+        $admin_packages = AdminBoardHelper::getAdminPackageFilter((int) theme_option('number_of_admin_package_per_page') ?: 12, []);
+//        $admin_packages = $admin_packages->adminadmin_packages()->orderBy('id', 'DESC')->Paginate((int)theme_option('number_of_admin_package_per_page') ?: 12);
+//        dd($admin_packages);
+        Theme::breadcrumb()
+            ->add(__('Home'), route('public.index'))
+            ->add(__('adminboard::lang.adminpackage'));
+//            ->add($admin_packages->name);
+//        theme_option('site_title','');
+//        $layout = MetaBox::getMetaData($admin_packages, 'layout', true);
+//        $layout = ($layout && in_array($layout, array_keys(get_admin_board_layouts()))) ? $layout : 'admin-default';
+        Theme::uses(Theme::getThemeName())->layout(theme_option('admin-layout', 'admin-default'));
+//        Theme::uses(Theme::getThemeName())->layout('other_page');
+//        dd($projects);
+        if ($request->ajax()) {
+//            dd(1);
+            if ($request->input('minimal')) {
+                return $this
+                    ->httpResponse()
+                    ->setData(Theme::partial('search-suggestion', ['items' => $admin_packages]));
+            }
+
+            return $this
+                ->httpResponse()
+                ->setData(Theme::partial('admin_board.admin_packages.items', compact('admin_packages')));
+        }
+//        dd($projects);
+
+        return Theme::scope('admin_board.admin_packages', compact('admin_packages'), 'pag')->render();
+    }
 }

@@ -93,6 +93,7 @@ class AdminPackageTable extends TableAbstract
             'name',
             'photo',
             'order',
+            'price',
             'created_at',
             'user_id',
             'status',
@@ -114,6 +115,10 @@ class AdminPackageTable extends TableAbstract
             ],
             'name' => [
                 'title' => trans('table::lang.name'),
+                'class' => 'text-start',
+            ],
+            'price' => [
+                'title' => trans('adminboard::lang.price'),
                 'class' => 'text-start',
             ],
             'order' => [
@@ -154,6 +159,11 @@ class AdminPackageTable extends TableAbstract
         return [
             'name' => [
                 'title' => trans('table::lang.name'),
+                'type' => 'text',
+                'validate' => 'required|max:120',
+            ],
+            'price' => [
+                'title' => trans('adminboard::lang.price'),
                 'type' => 'text',
                 'validate' => 'required|max:120',
             ],
