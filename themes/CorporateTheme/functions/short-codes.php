@@ -773,21 +773,33 @@ app()->booted(function () {
         add_shortcode('faq-option', __('Our FAQ Option'), __('Add FAQ Option'),
             function ($shortcode) {
                 $attributes = $shortcode->toArray();
-                $faqs = app(FaqInterface::class)->advancedGet([
-                    'condition' => ['category_id' => Arr::get($attributes, 'category_id')],
-//                    'order_by' => [
-//                        'created_at' => 'DESC',
-//                    ],
-//                    'take'      => 1,
-//                    'with'      => [
-//                        'faqs' => function ($query) {
-//                            return $query
-//                                ->latest()
-//                                ->where('status', DboardStatus::PUBLISHED);
-//                        },
-//                    ],
+//                $faqs = app(FaqInterface::class)->advancedGet([
+//                    'condition' => ['category_id' => Arr::get($attributes, 'category_id')],
+////                    'order_by' => [
+////                        'created_at' => 'DESC',
+////                    ],
+////                    'take'      => 1,
+////                    'with'      => [
+////                        'faqs' => function ($query) {
+////                            return $query
+////                                ->latest()
+////                                ->where('status', DboardStatus::PUBLISHED);
+////                        },
+////                    ],
+//                ]);
+                $faq_categories = app(FaqCategoryInterface::class)->advancedGet([
+//                    'condition' => ['category_id' => Arr::get($attributes, 'category_id')],
+                    'condition' => ['status' => Dboardstatus::PUBLISHED],
+                    'order_by' => [
+                        'order' => 'ASC',
+                    ],
+//                    'take'      => 1,\
+                    'with'      => ['faqs' => function ($q) {
+                        $q->where('status', Dboardstatus::PUBLISHED)
+                            ->orderBy('created_at', 'ASC');
+                    }],
                 ]);
-                return Theme::partial('short-codes.faq-option', ['title' => $shortcode->title,'image' => $shortcode->image,'faqs' => $faqs]);
+                return Theme::partial('short-codes.faq-option', ['title' => $shortcode->title,'image' => $shortcode->image,'faq_categories' => $faq_categories]);
             });
 
         shortcode()->setAdminConfig('faq-option', function ($attributes) {
