@@ -25,7 +25,7 @@
 		2.3 Buttons
 		2.4 Animations
 		2.5 Preloader
-		2.6 Background 
+		2.6 Background
 		2.7 Carousel
 		2.8 Nice Select
 		2.9 Pagination
@@ -68,26 +68,26 @@
 	---------------------------------
 	07. PAGES CSS
 	---------------------------------
-		7.1 about css start 
-		7.2 blog css start 
+		7.1 about css start
+		7.2 blog css start
 		7.3 brand css start
-		7.4 cart css start 
-		7.5 checkout css start 
-		7.6 choose css start 
-		7.7 conatct css start 
-		7.8 counter css start 
-		7.9 cta css start 
-		7.10 faq css start 
-		7.11 feature css start 
-		7.12 hero css start 
-		7.13 newslatter css start 
-		7.14 price css start 
-		7.15 product css start 
-		7.16 progress css start 
-		7.17 project css start 
-		7.18 service css start 
-		7.19 team css start 
-		7.20 testimonial css start 
+		7.4 cart css start
+		7.5 checkout css start
+		7.6 choose css start
+		7.7 conatct css start
+		7.8 counter css start
+		7.9 cta css start
+		7.10 faq css start
+		7.11 feature css start
+		7.12 hero css start
+		7.13 newslatter css start
+		7.14 price css start
+		7.15 product css start
+		7.16 progress css start
+		7.17 project css start
+		7.18 service css start
+		7.19 team css start
+		7.20 testimonial css start
 
 
 
@@ -171,7 +171,7 @@ li,
 }
 
 /*---------------------------------
-	typography css start 
+	typography css start
 ---------------------------------*/
 body {
   font-family: var(--tp-ff-body);
@@ -579,7 +579,7 @@ div.demo img {
 }
 
 /*----------------------------------------
-    Body Overlay 
+    Body Overlay
 -----------------------------------------*/
 .body-overlay {
   background-color: var(--tp-common-black);
@@ -2656,8 +2656,8 @@ div.demo img {
 /*  2.11 Breadcrumb
 /*----------------------------------------*/
 .breadcrumb__height {
-  padding-top: 300px;
-  padding-bottom: 180px;
+  padding-top: 165px;
+  padding-bottom: 20px;
   background-repeat: no-repeat;
   background-size: cover;
   object-fit: cover;
@@ -4999,8 +4999,8 @@ body .ui-tooltip {
 }
 
 .tp-header-top__plr {
-  padding-left: 100px;
-  padding-right: 100px;
+  /*padding-left: 100px;*/
+  /*padding-right: 100px;*/
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px), only screen and (min-width: 992px) and (max-width: 1199px), only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .tp-header-top__plr {

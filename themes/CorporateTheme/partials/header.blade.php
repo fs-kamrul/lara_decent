@@ -54,45 +54,45 @@
         </svg>
     </button>
 </div>
-<div class="search__popup">
-    <div class="container">
-        <div class="row">
-            <div class="col-xxl-12">
-                <div class="search__wrapper">
-                    <div class="search__top d-flex justify-content-between align-items-center">
-                        <div class="search__logo">
-                            <a href="{{ url('/') }}">
-                                <img src="{{ getImageUrlById($logo_image, 'shortcodes') }}" alt="{{ theme_option('site_title') }}">
-                            </a>
-                        </div>
-                        <div class="search__close">
-                            <button type="button" class="search__close-btn search-close-btn">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17 1L1 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M1 1L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="search__form">
-                        <form action="#">
-                            <div class="search__input">
-                                <input class="search-input-field" type="text" placeholder="Type here to search...">
-                                <span class="search-focus-border"></span>
-                                <button type="submit">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.55 18.1C14.272 18.1 18.1 14.272 18.1 9.55C18.1 4.82797 14.272 1 9.55 1C4.82797 1 1 4.82797 1 9.55C1 14.272 4.82797 18.1 9.55 18.1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M19.0002 19.0002L17.2002 17.2002" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{{--<div class="search__popup">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-xxl-12">--}}
+{{--                <div class="search__wrapper">--}}
+{{--                    <div class="search__top d-flex justify-content-between align-items-center">--}}
+{{--                        <div class="search__logo">--}}
+{{--                            <a href="{{ url('/') }}">--}}
+{{--                                <img src="{{ getImageUrlById($logo_image, 'shortcodes') }}" alt="{{ theme_option('site_title') }}">--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                        <div class="search__close">--}}
+{{--                            <button type="button" class="search__close-btn search-close-btn">--}}
+{{--                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                    <path d="M17 1L1 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>--}}
+{{--                                    <path d="M1 1L17 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>--}}
+{{--                                </svg>--}}
+{{--                            </button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="search__form">--}}
+{{--                        <form action="#">--}}
+{{--                            <div class="search__input">--}}
+{{--                                <input class="search-input-field" type="text" placeholder="Type here to search...">--}}
+{{--                                <span class="search-focus-border"></span>--}}
+{{--                                <button type="submit">--}}
+{{--                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                        <path d="M9.55 18.1C14.272 18.1 18.1 14.272 18.1 9.55C18.1 4.82797 14.272 1 9.55 1C4.82797 1 1 4.82797 1 9.55C1 14.272 4.82797 18.1 9.55 18.1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>--}}
+{{--                                        <path d="M19.0002 19.0002L17.2002 17.2002" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>--}}
+{{--                                    </svg>--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
+{{--                        </form>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 <div class="tpoffcanvas-area">
     <div class="tpoffcanvas">
         <div class="tpoffcanvas__close-btn">
@@ -162,14 +162,23 @@
 
 <header>
     <div class="@if (Request::is('/')) @else tp-header-3__transparent @endif">
+    <div class="bg-dark text-white" style="height: 50px">
+        <div class="container p-2">
+            <marquee behavior="scroll" direction="left" class="fw-bold" style="font-size:16px;">
+                {{ theme_option('action_notice_box_text') }}
+            </marquee>
+        </div>
+    </div>
     <!-- header top area start -->
     <div class="tp-header-top__area grey-bg tp-header-top__height tp-header-top__plr d-none d-md-block">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-right: 0px;">
+{{--        <div class="container-full">--}}
+{{--            <marquee behavior="Left" direction="">{{ theme_option('action_notice_box_text') }}</marquee>--}}
             <div class="row align-items-center">
                 <div class="col-xxl-8 col-xl-6 col-lg-6 col-md-6">
                     <div class="tp-header-top__left-info">
                         <ul>
-                            <li><span>Call</span>Consult With It Service? <a href="{{ url('contact-us') }}">Click Now</a></li>
+                            <li><span>Email</span><a href="maito:{{ theme_option('site_email') }}">{{ theme_option('site_email') }}</a></li>
                             <li>
                                 <svg width="14" height="18" viewBox="0 0 14 18" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -179,18 +188,18 @@
                                 </svg>
                                 <a href="https://www.google.com/maps/" target="_blank">{{ theme_option('address') }} </a>
                             </li>
-                            <li>
-                                <svg width="16" height="12" viewBox="0 0 16 12" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M9.58302 7.63437C9.20944 7.91095 8.77552 8.05715 8.32813 8.05715C7.88077 8.05715 7.44684 7.91095 7.07327 7.63437L0.92029 3.07875C0.886153 3.05348 0.852895 3.02713 0.820312 3.00003V10.4649C0.820312 11.3208 1.44572 12 2.2026 12H14.4536C15.2243 12 15.8359 11.3055 15.8359 10.4649V3C15.8033 3.02716 15.77 3.05358 15.7357 3.07888L9.58302 7.63437Z"
-                                        fill="#FFB302" />
-                                    <path
-                                        d="M1.40833 2.54786L7.56129 6.76079C7.79421 6.92027 8.06115 7 8.32808 7C8.59505 7 8.86202 6.92024 9.09493 6.76079L15.2479 2.54786C15.6161 2.29591 15.8359 1.87424 15.8359 1.41914C15.8359 0.636605 15.216 0 14.4541 0H2.20213C1.4402 3.01194e-05 0.820312 0.636635 0.820312 1.41989C0.820312 1.87424 1.04015 2.29591 1.40833 2.54786Z"
-                                        fill="#FFB302" />
-                                </svg>
-                                <a href="maito:{{ theme_option('site_email') }}">{{ theme_option('site_email') }}</a>
-                            </li>
+{{--                            <li>--}}
+{{--                                <svg width="16" height="12" viewBox="0 0 16 12" fill="none"--}}
+{{--                                     xmlns="http://www.w3.org/2000/svg">--}}
+{{--                                    <path--}}
+{{--                                        d="M9.58302 7.63437C9.20944 7.91095 8.77552 8.05715 8.32813 8.05715C7.88077 8.05715 7.44684 7.91095 7.07327 7.63437L0.92029 3.07875C0.886153 3.05348 0.852895 3.02713 0.820312 3.00003V10.4649C0.820312 11.3208 1.44572 12 2.2026 12H14.4536C15.2243 12 15.8359 11.3055 15.8359 10.4649V3C15.8033 3.02716 15.77 3.05358 15.7357 3.07888L9.58302 7.63437Z"--}}
+{{--                                        fill="#FFB302" />--}}
+{{--                                    <path--}}
+{{--                                        d="M1.40833 2.54786L7.56129 6.76079C7.79421 6.92027 8.06115 7 8.32808 7C8.59505 7 8.86202 6.92024 9.09493 6.76079L15.2479 2.54786C15.6161 2.29591 15.8359 1.87424 15.8359 1.41914C15.8359 0.636605 15.216 0 14.4541 0H2.20213C1.4402 3.01194e-05 0.820312 0.636635 0.820312 1.41989C0.820312 1.87424 1.04015 2.29591 1.40833 2.54786Z"--}}
+{{--                                        fill="#FFB302" />--}}
+{{--                                </svg>--}}
+{{--                                <a href="maito:{{ theme_option('site_email') }}">{{ theme_option('site_email') }}</a>--}}
+{{--                            </li>--}}
                         </ul>
                     </div>
                 </div>

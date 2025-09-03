@@ -1,5 +1,5 @@
 
-<div class="breadcrumb__area breadcrumb__overlay breadcrumb__height p-relative fix" data-background="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/hero/hero-3-2.jpg') }}">
+<div class="breadcrumb__area breadcrumb__overlay breadcrumb__height p-relative fix" data-background="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/hero/hero-3-4.png') }}">
     <div class="container">
         <div class="row">
             <div class="col-xxl-12">

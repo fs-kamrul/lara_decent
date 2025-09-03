@@ -1,4 +1,4 @@
-<div class="col-xl-3 col-lg-4 col-md-6 mb-50 wow tpfadeUp" data-wow-duration=".9s" data-wow-delay=".3s">
+<div class="col-xl-4 col-lg-4 col-md-6 mb-50 wow tpfadeUp" data-wow-duration=".9s" data-wow-delay=".3s">
     <div class="tp-footer__widget footer-col-1">
 {{--        <h2>{{ $config['name'] }}</h2>--}}
         <div class="tp-footer__logo">

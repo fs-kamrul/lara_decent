@@ -34,7 +34,7 @@
                 @endphp
                 @foreach($packages as $key=>$package)
                 <div class="col-xl-4 col-lg-4 col-md-6 mb-30 wow tpfadeUp" data-wow-duration=".9s" data-wow-delay="{{ $wow +=$increment }}s">
-                    <div class="tp-price__item @if($key == 1) active @endif p-relative text-center">
+                    <div class="tp-price__item active p-relative text-center">
                         <div class="tp-price__head-icon">
                         <span>
                            <svg width="32" height="29" viewBox="0 0 32 29" fill="none"
