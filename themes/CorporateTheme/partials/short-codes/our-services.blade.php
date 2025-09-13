@@ -1,6 +1,6 @@
 <!-- ----------------------- Different Start ----------------------- -->
 @if($services)
-    <div class="tp-service__area tp-service__bg pt-130 grey-bg pb-100 z-index" data-background="assets/img/service/service-bg.png">
+    <div class="tp-service__area tp-service__bg pt-130 grey-bg pb-100 z-index" data-background="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/service/service-bg.png') }}">
         <div class="tp-service__badge-wrap d-none d-sm-block">
             <div class="tp-service__badge d-flex align-items-center">
                <span class="frist-child">

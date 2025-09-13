@@ -30,7 +30,7 @@
 {{--            <span>Save 20%</span>--}}
         </div>
         <div class="tp-price__mpbs tp-price__mpbs-bg"
-             data-background="assets/img/price/price-bg-shape.png">
+             data-background="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/price/price-bg-shape.png') }}">
             <h4>{{ $admin_package->name_limit }}<em>{{ $admin_package->name_size }}</em></h4>
             <span>{{ $admin_package->tag_line }}</span>
         </div>

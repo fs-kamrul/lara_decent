@@ -262,8 +262,8 @@
     <!-- header top area end -->
 
     <!-- header main area end -->
-    <div id="header-sticky" class="tp-header-main__area tp-header-main__pl p-relative z-index">
-        <div class="tp-header-main__main-bg" data-background="assets/img/header-icon/header-bg-shape-1.png"></div>
+    <div id="header-sticky" class="tp-header-main__area tp-header-main__pl p-relative z-index" style="background-color: white;">
+        <div class="tp-header-main__main-bg" data-background="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/header-icon/header-bg-shape-1.png') }}"></div>
         <div class="container-fluid p-0">
             <div class="row align-items-center g-0">
                 <div class="col-xl-2 col-lg-4 col-md-4 col-8">
@@ -290,7 +290,7 @@
                 </div>
                 <div class="col-xl-10 col-lg-8 col-md-8 col-4">
                     <div class="tp-header-main__menu-wrapper">
-                        <div class="tp-header-main__menu-bg" data-background="assets/img/header-icon/header-bg-shape-1.png">
+                        <div class="tp-header-main__menu-bg" data-background="{{ asset('themes/' . Theme::getPublicThemeName() . '/img/header-icon/header-bg-shape-1.png') }}">
                             <div class="tp-header-main__menu-box d-none d-xl-block">
                                 <div class="tp-header-main__menu menu-icon p-relative">
                                     <nav class="tp-main-menu-content">
