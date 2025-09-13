@@ -80,6 +80,10 @@ class AdminCategory extends DboardModel implements HasTreeCategoryContract
     {
         return $this->belongsToMany(AdminNoticeBoard::class, 'admin_notice_board_categories','category_id', 'notice_board_id')->with('slugable');
     }
+    public function adminftpserver(): BelongsToMany
+    {
+        return $this->belongsToMany(AdminFtpServer::class, 'admin_ftp_server_categories','category_id', 'ftp_server_id')->with('slugable');
+    }
 
     public function adminevents(): BelongsToMany
     {
@@ -116,25 +120,25 @@ class AdminCategory extends DboardModel implements HasTreeCategoryContract
             }
 
 //            dd( $this->adminworkshops);
-            $html .= DboardHelper::renderBadge(
-                $this->adminworkshops_count,
-                'info',
-                [
-                    'data-bs-toggle' => 'tooltip',
-                    'title' => trans('adminboard::category.total_workshops', ['total' => $this->adminworkshops_count]),
-                ]
-            );
-
-//            dd( $this->adminnews_count);
-            $count = $this->adminnews_count;
-            $html .= DboardHelper::renderBadge(
-                $count,
-                'primary',
-                [
-                    'data-bs-toggle' => 'tooltip',
-                    'title' => trans('adminboard::category.total_news', ['total' => $count]),
-                ]
-            );
+//            $html .= DboardHelper::renderBadge(
+//                $this->adminworkshops_count,
+//                'info',
+//                [
+//                    'data-bs-toggle' => 'tooltip',
+//                    'title' => trans('adminboard::category.total_workshops', ['total' => $this->adminworkshops_count]),
+//                ]
+//            );
+//
+////            dd( $this->adminnews_count);
+//            $count = $this->adminnews_count;
+//            $html .= DboardHelper::renderBadge(
+//                $count,
+//                'primary',
+//                [
+//                    'data-bs-toggle' => 'tooltip',
+//                    'title' => trans('adminboard::category.total_news', ['total' => $count]),
+//                ]
+//            );
 //            dd($this->adminteams_count);
             $teams_count = $this->adminteams_count;
             $html .= DboardHelper::renderBadge(
@@ -155,13 +159,23 @@ class AdminCategory extends DboardModel implements HasTreeCategoryContract
                 ]
             );
 
-            $adminevents_count = $this->adminevents_count;
+//            $adminevents_count = $this->adminevents_count;
+//            $html .= DboardHelper::renderBadge(
+//                $adminevents_count,
+//                'danger',
+//                [
+//                    'data-bs-toggle' => 'tooltip',
+//                    'title' => trans('adminboard::category.total_events', ['total' => $adminevents_count]),
+//                ]
+//            );
+
+            $adminftpserver_count = $this->adminftpserver_count;
             $html .= DboardHelper::renderBadge(
-                $adminevents_count,
-                'danger',
+                $adminftpserver_count,
+                'info',
                 [
                     'data-bs-toggle' => 'tooltip',
-                    'title' => trans('adminboard::category.total_events', ['total' => $adminevents_count]),
+                    'title' => trans('adminboard::category.total_ftp_server', ['total' => $adminftpserver_count]),
                 ]
             );
 

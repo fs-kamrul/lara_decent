@@ -51,6 +51,7 @@ return [
     'categories' => 'Categories',
     'order' => 'Order',
     'set_url' => 'URL',
+    'url_name' => 'URL',
     'add_new' => 'Add New',
     'delete' => 'Delete',
     'record_update_successfully' => 'Record update successfully',
@@ -84,6 +85,13 @@ return [
         'select_all' => 'Select all',
         'deselect_all' => 'Deselect all',
     ],
+    'adminftpserver' => 'Ftp Server',
+    'adminftpserver_add' => 'Ftp Server add',
+    'adminftpserver_create' => 'Ftp Server create',
+    'adminftpserver_edit' => 'Ftp Server edit',
+    'adminftpserver_show' => 'Ftp Server show',
+    'adminftpserver_import' => 'Ftp Server Import',
+
     'adminpackage' => 'Package',
     'adminpackage_add' => 'Package add',
     'adminpackage_create' => 'Package create',
@@ -209,3 +217,5 @@ return [
     'adminworkshop_import' => 'Workshop Import',
 
 ];
+
+

@@ -19,6 +19,10 @@ class AdminBoardDatabaseSeeder extends Seeder
         $this->call(
             [
                 AdminBoardPermissionSeeder::class,
+                AdminFtpServerPermissionSeeder::class,
+
+                FtpServerPermissionSeeder::class,
+
                 AdminPackagePermissionSeeder::class,
 
                 AdminServicePermissionSeeder::class,
@@ -58,5 +62,7 @@ class AdminBoardDatabaseSeeder extends Seeder
         );
     }
 }
+
+
 
 

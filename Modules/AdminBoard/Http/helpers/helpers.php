@@ -77,6 +77,11 @@ if (! defined('ADMINNEWS_MODULE_SCREEN_NAME')) {
 if (! defined('ADMINWORKSHOP_MODULE_SCREEN_NAME')) {
     define('ADMINWORKSHOP_MODULE_SCREEN_NAME', 'adminworkshop');
 }
+//add_next_line
+if (! defined('ADMINFTPSERVER_MODULE_SCREEN_NAME')) {
+    define('ADMINFTPSERVER_MODULE_SCREEN_NAME', 'adminftpserver');
+}
+
 use \Modules\AdminBoard\Http\Models\AdminGallery;
 
 if (!function_exists('getAdminImageUrlById')) {
@@ -191,6 +196,7 @@ if (! function_exists('get_noticeboard_categories_related_ids')) {
         return array_filter($results);
     }
 }
+
 
 
 

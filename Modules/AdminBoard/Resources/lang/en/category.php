@@ -11,5 +11,6 @@ return [
     'total_teams' => 'Total Teams',
     'total_events' => 'Total Events',
     'total_notice_boards' => 'Total Notice Boards',
+    'total_ftp_server' => 'Total Ftp Server',
     'is_default' => 'Is default',
 ];

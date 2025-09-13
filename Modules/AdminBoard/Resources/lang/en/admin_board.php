@@ -7,7 +7,8 @@ return [
         'workshop' => 'Workshop',
         'event' => 'Event',
         'news' => 'News',
-        'team' => 'Faculty',
+        'team' => 'Team',
         'noticeboard' => 'Notice Board',
+        'ftpserver' => 'Ftp Servers',
     ],
 ];

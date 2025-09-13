@@ -9,6 +9,14 @@ use Modules\AdminBoard\Repositories\Cache\AdminBoardCacheDecorator;
 use Modules\AdminBoard\Repositories\Eloquent\AdminBoardRepository;
 use Modules\AdminBoard\Repositories\Interfaces\AdminBoardInterface;
 //add_new_line_Interface_and_Repository_call
+use Modules\AdminBoard\Http\Models\AdminFtpServer;
+use Modules\AdminBoard\Repositories\Eloquent\AdminFtpServerRepository;
+use Modules\AdminBoard\Repositories\Interfaces\AdminFtpServerInterface;
+use Modules\AdminBoard\Repositories\Cache\AdminFtpServerCacheDecorator;
+use Modules\AdminBoard\Http\Models\FtpServer;
+use Modules\AdminBoard\Repositories\Eloquent\FtpServerRepository;
+use Modules\AdminBoard\Repositories\Interfaces\FtpServerInterface;
+use Modules\AdminBoard\Repositories\Cache\FtpServerCacheDecorator;
 use Modules\AdminBoard\Http\Models\AdminPackage;
 use Modules\AdminBoard\Repositories\Eloquent\AdminPackageRepository;
 use Modules\AdminBoard\Repositories\Interfaces\AdminPackageInterface;
@@ -105,6 +113,12 @@ class HookServiceProvider extends ServiceProvider
             );
         });
 //add_new_line_Interface_and_Repository_to_hook
+        $this->app->bind(AdminFtpServerInterface::class, function () {
+            return new AdminFtpServerCacheDecorator(
+                new AdminFtpServerRepository(new AdminFtpServer)
+            );
+        });
+
         $this->app->bind(AdminPackageInterface::class, function () {
             return new AdminPackageCacheDecorator(
                 new AdminPackageRepository(new AdminPackage)
@@ -393,4 +407,6 @@ class HookServiceProvider extends ServiceProvider
         return (new HandleFrontPages())->handle($slug);
     }
 }
+
+
 

@@ -19,6 +19,7 @@ class AdminBoardEnum extends Enum
     public const EVENT = 'event';
     public const NEWS = 'news';
     public const NOTICEBOARD = 'noticeboard';
+    public const FTPSERVER = 'ftpserver';
 
     public static $langPath = 'adminboard::admin_board.statuses';
 
@@ -39,6 +40,9 @@ class AdminBoardEnum extends Enum
                 break;
             case self::NOTICEBOARD:
                 $color = 'danger';
+                break;
+            case self::FTPSERVER:
+                $color = 'warning';
                 break;
             default:
                 $color = 'primary';

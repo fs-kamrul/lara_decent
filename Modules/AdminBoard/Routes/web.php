@@ -1,26 +1,4 @@
 <?php
-Route::group(['middleware' => ['auth', '\Modules\KamrulDashboard\Http\Middleware\IsInstalled', '\Modules\KamrulDashboard\Http\Middleware\AdminSidebarMenu']], function () {
-    Route::group(['prefix' => DboardHelper::getAdminPrefix()], function () {
-        Route::resource('adminpackage', 'AdminPackageController');
-        Route::delete('adminpackage/items/destroy', [
-            'as'         => 'adminpackage.deletes',
-            'uses'       => 'AdminPackageController@deletes',
-        ]);
-    });
-});
-?>
-<?php
-Route::group(['middleware' => ['auth', '\Modules\KamrulDashboard\Http\Middleware\IsInstalled', '\Modules\KamrulDashboard\Http\Middleware\AdminSidebarMenu']], function () {
-    Route::group(['prefix' => DboardHelper::getAdminPrefix()], function () {
-        Route::resource('adminservice', 'AdminServiceController');
-        Route::delete('adminservice/items/destroy', [
-            'as'         => 'adminservice.deletes',
-            'uses'       => 'AdminServiceController@deletes',
-        ]);
-    });
-});
-?>
-<?php
 
 //use Modules\Theme\Events\ThemeRoutingBeforeEvent;
 //use Modules\Theme\Events\ThemeRoutingAfterEvent;
@@ -39,6 +17,25 @@ Route::group(['middleware' => ['auth', '\Modules\KamrulDashboard\Http\Middleware
     });
   //  Route::get('api/adminboard','AdminBoardController@data');
     Route::group(['prefix' => DboardHelper::getAdminPrefix(). '/adminboard'], function () {
+
+        Route::resource('adminftpserver', 'AdminFtpServerController');
+        Route::delete('adminftpserver/items/destroy', [
+            'as'         => 'adminftpserver.deletes',
+            'uses'       => 'AdminFtpServerController@deletes',
+        ]);
+
+        Route::resource('adminpackage', 'AdminPackageController');
+        Route::delete('adminpackage/items/destroy', [
+            'as'         => 'adminpackage.deletes',
+            'uses'       => 'AdminPackageController@deletes',
+        ]);
+
+        Route::resource('adminservice', 'AdminServiceController');
+        Route::delete('adminservice/items/destroy', [
+            'as'         => 'adminservice.deletes',
+            'uses'       => 'AdminServiceController@deletes',
+        ]);
+
         Route::resource('adminclub', 'AdminClubController');
         Route::delete('adminclub/items/destroy', [
             'as'         => 'adminclub.deletes',

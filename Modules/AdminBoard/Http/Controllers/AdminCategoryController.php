@@ -69,7 +69,7 @@ class AdminCategoryController extends DboardController
             'order' => 'ASC',
         ]);
 
-        $categories->loadCount(['adminworkshops', 'adminnews', 'adminteams', 'adminnoticeboards', 'adminevents']);
+        $categories->loadCount(['adminworkshops', 'adminnews', 'adminteams', 'adminnoticeboards', 'adminevents', 'adminftpserver']);
 //        dd($categories);
 
         if ($request->ajax()) {

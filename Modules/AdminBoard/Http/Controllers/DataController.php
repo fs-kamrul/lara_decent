@@ -66,6 +66,13 @@ class DataController  extends Controller
                                 __('adminboard::lang.adminnews'),
                                 ['icon' => 'icon-file-signature']
                     )->order(20); } //next_lint
+                if(auth()->user()->can('adminftpserver_access')) {
+                    $sub->url(
+                        action('\Modules\AdminBoard\Http\Controllers\AdminFtpServerController@index'),
+                        __('adminboard::lang.adminftpserver'),
+                        ['icon' => 'icon-file-signature']
+                    )->order(20); }
+
                 if(auth()->user()->can('adminpackage_access')) {
                     $sub->url(
                         action('\Modules\AdminBoard\Http\Controllers\AdminPackageController@index'),
@@ -179,19 +186,4 @@ class DataController  extends Controller
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
