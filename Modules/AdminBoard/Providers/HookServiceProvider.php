@@ -383,6 +383,19 @@ class HookServiceProvider extends ServiceProvider
                             'class' => 'form-control',
                         ],
                     ],
+                ])
+                ->setField([
+                    'id' => 'number_of_admin_ftpserver_per_page',
+                    'section_id' => 'opt-text-subsection-admin-board',
+                    'type' => 'number',
+                    'label' => __('Number of Ftp Server per page'),
+                    'attributes' => [
+                        'name' => 'number_of_admin_ftpserver_per_page',
+                        'value' => 12,
+                        'options' => [
+                            'class' => 'form-control',
+                        ],
+                    ],
                 ]);
             //admin-layout
 //                ->setField([

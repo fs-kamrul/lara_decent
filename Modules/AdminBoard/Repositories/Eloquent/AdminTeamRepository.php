@@ -30,6 +30,16 @@ class AdminTeamRepository extends RepositoriesAbstract implements AdminTeamInter
                      'created_at' => 'ASC',
                  ];
                  break;
+             case 'order_asc':
+                 $orderBy = [
+                     'order' => 'ASC',
+                 ];
+                 break;
+             case 'order_desc':
+                 $orderBy = [
+                     'order' => 'DESC',
+                 ];
+                 break;
              default:
                  $orderBy = [
                      'created_at' => 'DESC',

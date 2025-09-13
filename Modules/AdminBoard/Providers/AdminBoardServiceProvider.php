@@ -12,6 +12,7 @@ use Modules\AdminBoard\Http\Models\AdminCategory;
 use Modules\AdminBoard\Http\Models\AdminClub;
 use Modules\AdminBoard\Http\Models\AdminEvent;
 use Modules\AdminBoard\Http\Models\AdminFacility;
+use Modules\AdminBoard\Http\Models\AdminFtpServer;
 use Modules\AdminBoard\Http\Models\AdminGallery;
 use Modules\AdminBoard\Http\Models\AdminGalleryBoard;
 use Modules\AdminBoard\Http\Models\AdminNews;
@@ -86,6 +87,9 @@ class AdminBoardServiceProvider extends ServiceProvider
         SlugHelper::registerModule(AdminPackage::class, 'Packages Data');
         SlugHelper::setPrefix(AdminPackage::class, 'packages', true);
 
+        SlugHelper::registerModule(AdminFtpServer::class, 'Ftp Server Data');
+        SlugHelper::setPrefix(AdminFtpServer::class, 'ftpserver', true);
+
 //        SlugHelper::registerModule(AdminStudentGuideline::class, 'Student guidelines Data');
 //        SlugHelper::setPrefix(AdminStudentGuideline::class, 'student-guidelines', true);
 
@@ -113,6 +117,7 @@ class AdminBoardServiceProvider extends ServiceProvider
                 AdminClub::class,
                 AdminService::class,
                 AdminPackage::class,
+                AdminFtpServer::class,
 //                AdminCareerNavigator::class,
 //                AdminFacility::class,
             ]);

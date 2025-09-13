@@ -6,6 +6,7 @@ namespace Modules\AdminBoard\Packages\Supports;
 use Illuminate\Contracts\Database\Query\Builder;
 use Modules\AdminBoard\Repositories\Interfaces\AdminCareerNavigatorInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminClubInterface;
+use Modules\AdminBoard\Repositories\Interfaces\AdminFtpServerInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminGalleryBoardInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminPackageInterface;
 use Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface;
@@ -504,6 +505,27 @@ class AdminBoardHelper
 //        return app(AdminCategoryInterface::class)->getAdminCategory([], [], $conditions);
     }
 
+    public function getCategoryFtpserverFilter(?int $perPage = 12, int $category = null)
+    {
+        $request = request();
+        $perPage = (int) $request->input('per_page', $perPage ?: 12);
+        $conditions['adminboard'] = 'team';
+        if($category){
+            $conditions['id'] = $category;
+        }
+//        dd($conditions);
+        $team = app(AdminCategoryInterface::class)->advancedGet([
+            'condition' => $conditions,
+            'take'      => 1,
+//            'order_by' => ['created_at' => 'desc'],
+        ]);
+//        $teams = AdminBoardHelper::getCategoryFilter((int) theme_option('number_of_team_per_page') ?: 12, []);
+        $teams = $team->adminftpserver()->orderBy('order', 'ASC')->Paginate($perPage);
+
+        return $teams;
+//        return app(AdminCategoryInterface::class)->getAdminCategory([], [], $conditions);
+    }
+
     public function getAdminCategoryRelationsQuery(): array
     {
         return [
@@ -644,6 +666,52 @@ class AdminBoardHelper
     }
 
     public function getAdminSPackageRelationsQuery(): array
+    {
+        return [
+            'slugable:id,key,prefix,reference_id',
+//            'state:id,name',
+//            'city:id,name',
+//            'categories' => function (Builder $query) {
+//                return $query
+//                    ->wherePublished()
+//                    ->orderBy('created_at', 'DESC')
+//                    ->orderBy('is_default', 'DESC')
+//                    ->orderBy('order', 'ASC')
+//                    ->select('re_categories.id', 're_categories.name');
+//            },
+        ];
+    }
+    public function getAdminFtpserverFilter(?int $perPage = 12, array $extra = [])
+    {
+        $request = request();
+
+//        $perPage = $request->integer('per_page') ?: ($perPage ?: 12);
+        $perPage = (int) $request->input('per_page', $perPage ?: 12);
+
+        $filters = $request->validate(apply_filters('projects_filter_validation_rules', [
+            'keyword' => 'nullable|string|max:255',
+            'location' => 'nullable|string',
+            'sort_by' => 'nullable|string',
+            'blocks' => 'nullable|numeric',
+            'locations' => 'nullable|array',
+        ]));
+
+        $filters['keyword'] = $request->input('k');
+        $filters['sort_by'] = 'order_asc';
+
+        $params = array_merge([
+            'paginate' => [
+                'per_page' => (int) $perPage,  // Ensure perPage is an integer
+                'current_paged' => (int) $request->input('page', 1), // Cast to integer
+            ],
+            'order_by' => ['admin_ftp_servers.order' => 'ASC'],
+            'with' => self::getAdminFtpserverRelationsQuery(),
+        ], $extra);
+
+        return app(AdminFtpServerInterface::class)->getAdminFtpserverGroup($filters, $params);
+    }
+
+    public function getAdminFtpserverRelationsQuery(): array
     {
         return [
             'slugable:id,key,prefix,reference_id',

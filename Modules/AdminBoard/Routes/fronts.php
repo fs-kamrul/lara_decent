@@ -14,6 +14,7 @@ use Modules\AdminBoard\Http\Models\AdminClub;
 use Modules\AdminBoard\Http\Models\AdminService;
 USE Modules\AdminBoard\Http\Models\AdminStudentGuideline;
 USE Modules\AdminBoard\Http\Models\AdminPackage;
+USE Modules\AdminBoard\Http\Models\AdminFtpServer;
 
 Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware' => ['web']], function () {
 
@@ -33,6 +34,7 @@ Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware'
             $adminClubPrefix = SlugHelper::getPrefix(AdminClub::class, 'clubs') ?: 'clubs';
             $adminServicePrefix = SlugHelper::getPrefix(AdminService::class, 'services') ?: 'services';
             $adminPackagePrefix = SlugHelper::getPrefix(AdminPackage::class, 'packages') ?: 'packages';
+            $adminFtpserverPrefix = SlugHelper::getPrefix(AdminFtpServer::class, 'ftpserver') ?: 'ftpserver';
 
             Route::match(theme_option('workshop_list_page_id') ? ['POST'] : ['POST', 'GET'], $workshopPrefix, [PublicController::class, 'getWorkshop'])
                 ->name('public.adminworkshop');
@@ -63,6 +65,8 @@ Route::group(['namespace' => 'Modules\AdminBoard\Http\Controllers', 'middleware'
                 ->name('public.adminservice');
             Route::match(theme_option('package_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminPackagePrefix, [PublicController::class, 'getAdminPackagePrefix'])
                 ->name('public.adminpackage');
+            Route::match(theme_option('ftpserver_list_page_id') ? ['POST'] : ['POST', 'GET'], $adminFtpserverPrefix, [PublicController::class, 'getAdminFtpserverPrefix'])
+                ->name('public.adminftpserver');
         });
     }
 });
