@@ -152,7 +152,7 @@ app()->booted(function () {
                 $adminBoardRepository = app(\Modules\AdminBoard\Repositories\Interfaces\AdminServiceInterface::class);
                 $services = $adminBoardRepository->advancedGet(array_merge([
                     'take' => Arr::get($attributes, 'number_of_slide'),
-                    'order_by' => ['created_at' => 'desc'],
+                    'order_by' => ['order' => 'desc'],
                 ]));
 //                dd($facilities);
 //                $facilities = AdminBoardHelper::getFacilityFilter((int) Arr::get($attributes, 'number_of_slide'), []);
@@ -168,7 +168,7 @@ app()->booted(function () {
                 $adminBoardRepository = app(\Modules\AdminBoard\Repositories\Interfaces\AdminPackageInterface::class);
                 $packages = $adminBoardRepository->advancedGet(array_merge([
                     'take' => Arr::get($attributes, 'number_of_slide'),
-                    'order_by' => ['created_at' => 'desc'],
+                    'order_by' => ['order' => 'asc'],
                 ]));
 //                dd($facilities);
 //                $facilities = AdminBoardHelper::getFacilityFilter((int) Arr::get($attributes, 'number_of_slide'), []);

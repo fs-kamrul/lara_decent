@@ -583,6 +583,7 @@ class AdminBoardHelper
         ]));
 
         $filters['keyword'] = $request->input('k');
+        $filters['sort_by'] = 'order_asc';
 
         $params = array_merge([
             'paginate' => [
@@ -628,13 +629,14 @@ class AdminBoardHelper
         ]));
 
         $filters['keyword'] = $request->input('k');
+        $filters['sort_by'] = 'order_asc';
 
         $params = array_merge([
             'paginate' => [
                 'per_page' => (int) $perPage,  // Ensure perPage is an integer
                 'current_paged' => (int) $request->input('page', 1), // Cast to integer
             ],
-            'order_by' => ['admin_packages.order' => 'DESC'],
+            'order_by' => ['admin_packages.order' => 'ASC'],
             'with' => self::getAdminSPackageRelationsQuery(),
         ], $extra);
 
